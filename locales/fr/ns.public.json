@@ -1,0 +1,250 @@
+{
+	"videoNotSupported": "Vidéo non pris en charge!",
+	"index": {
+		"introduction": [
+			"#Bienvenu chez $t(ns.layout:title)!",
+			"La documentation de surveillance fondées sur le $t(ns.common:curriculum)."
+		],
+		"registerInfo": [
+			"p Inscrivez-vous aujourd'hui gratuitement!",
+			"p Donc vous pouvez commencer immédiatement $t(ns.layout:title) à vous donne les premiers $t(ns.common:credits) pour activer votre libre $t(ns.common:children)!"
+		],
+		"features": {
+			"monitoring": {
+				"title": "observation et documentation",
+				"items": [
+					"Documentez vos observations aux objectifs spécifiques de l'éducation." ,
+					"Documentez vos observations générales de l'enfant."
+				]
+			},
+			"rating": {
+				"title": "$t(ns.common:rating) und $t(ns.common:chart)",
+				"items": [
+					"Évaluer les progrès d'un enfant ou d'une $t(ns.common:group) entière.",
+					"Obtenez un aperçu d'un $t(ns.common:child) ou d'un ensemble de $t(ns.common:group) avec l'aide de l'$t(ns.common:chart).."
+				]
+			},
+			"lists": {
+				"title": "$t(ns.common:lists)",
+				"items": [
+					"Imprimer facilement l'adresse / téléphone des listes ou des niveaux de classe." ,
+					"Faites une liste d'alarme téléphonique."
+				]
+			},
+			"archive": {
+				"title": "archiv",
+				"items": [
+					"Archives des $t(ns.common:children) qui vont à l'école primaire. Toutes les données sont disponibles pour plus tard disponibles."
+				]
+			},
+			"pricing": {
+				"title": "prix justes",
+				"items": [
+					"Vous payez autant que nécessaire dont vous avez besoin.",
+					"Une fois achetés $t(ns.common:credits) (pour l'activation d'un $t(ns.common:child)) n'expirent pas."
+				]
+			},
+			"security": {
+				"title": "sécurité",
+				"items": [
+					"Vous décidez qui a accès à vos données.",
+					"Nous nous soucions de la sécurité de vos données."
+				]
+			},
+			"cross": {
+				"title": "croix-partout",
+				"items": [
+					"Utilisez $t(ns.layout:title), n'importe où, n'importe quand.",
+					"Indépendamment du fait que PC, tablette ou smartphone."
+				]
+			}
+		},
+		"browser": [
+			"| Certaines fonctionnalités ne sont pas pris en charge par certains navigateurs. Nous recommandons l'utilisation de ",
+			"a(href='http://www.google.com/chrome/', target='_new') Chrome ",
+			"| ou ",
+			"a(href='http://www.mozilla.org/de/firefox/new/', target='_new') Firefox."
+		],
+		"compatability": [
+			"p Navigateurs / équipement pris en charge:",
+			"p.small $t(ns.layout:title) s'appuie sur la norme de l'Internet moderne de le HTML5. En conséquence, tous les navigateurs est pris en charge, qui soutient cette proposition.",
+			"p.small Utilisez $t(ns.layout:title) partir de votre PC, tablette ou smartphone."
+		],
+		"regions": {
+			"info": [
+				"p Actuellement $t(ns.layout:title) soutient le $t(ns.common:curriculum) des cantons suivants:",
+				"p.small Nous travaillons aussi vite que possible tous les $t(ns.common:curriculums) des cantons suisses de mettre à disposition.",
+				"p.small Le $t(ns.common:curriculum) de votre cantonais est pas pris en charge, s'il vous plaît n'hésitez pas à nous contacter.",
+				"p.small Ces districts sont déjà pris en charge:"
+			],
+			"1": [
+				"Argovie" ,
+				"Berne",
+				"nouveau: Bâle-Campagne",
+                "nouveau: Bâle-Ville",
+                "nouveau: Fribourg *",
+                "nouveau: Genève *",
+                "nouveau: Jura *",
+                "nouveau: Lausanne *"
+			],
+			"2": [
+				"nouveau: Neuchâtel *",
+                "Schaffhouse",
+                "nouveau: Soleure *",
+                "Saint-Gall",
+                "Thurgovie",
+                "Zoug",
+                "Zurich"
+			],
+			"appendix": "* le plan d’études romand (PER)"
+		}
+	},
+	"about": {
+		"content": [
+			"p Nous venons de mettre en place une nouvelle société à tourner...",
+			"p Bientôt, vous trouverez plus d'infos..."
+     	]
+	},
+	"privacy": {
+		"content": [
+			"p Sur $t(ns.layout:title) peut partiellement sensible, les données personnelles sont gérées. Les questions suivantes techniques et organisationnelles afin de s'assurer que l'information est utilisée uniquement à des fins de certains:",
+	        "h4 Protection par mot de passe",
+	        "p Tous les accès est protégé par mot. En tant qu'utilisateur, l'utilisateur s'engage à utiliser seulement les ajouts au système de travailler au sein de leur groupe ou une classe, et de changer les mots de passe sur une base régulière conformément aux politiques de sécurité.",
+	        "h4 Transmission de données chiffrées",
+	        "p La communication entre le serveur web et le navigateur sera transmis sous forme cryptée via SSL. Le certificat SSL de $t(ns.layout:title) est émis de l'autorité de certification connue ",
+	        "    a(href='http://www.ti-swiss.com', target='_new') Twister Informatics ",
+	        "    | qui vérifie l'identification de l'exploitant du site et le serveur web."
+     	]
+	},
+	"terms": {
+		"org": "XYZ",
+		"content": [
+			"h4 Conditions",
+			"p En accédant à cette application Web, vous déclarez que vous comprenez et acceptez les conditions suivantes d'utilisation d'informations et juridique dans le cadre de cette application Web (et les éléments qu'il contient) et. Si vous n'acceptez pas les termes et conditions suivants, s'il vous plaît s'abstenir d'accéder à ce site et les pages suivantes (ci-après \"$t(ns.layout:title)\" mentionnée).",
+			"h4 Droit d'auteur",
+			"p Tous les éléments sur ce site sont la propriété exclusive de prix (en particulier droit d'auteur et autres droits), sauf indication contraire. Les articles sont librement utilisable uniquement pour la navigation, si les éléments en totalité ou en partie, sous quelque forme électronique ou écrite -, sont reproduits, la mention explicite du prix est nécessaire. En outre, doit être obtenue pour la résistance de tout élément de l'approbation des prix. Les propriétaires de $t(ns.layout:title) seul est $t(ns.public:terms.org). Aucune partie de $t(ns.layout:title) est conçu de telle sorte que son utilisation est accordée par une licence ou droit d'utiliser une image, marque déposée ou un logo.",
+			"p En téléchargeant ou la copie du site web n'accorde pas de droits à l'égard du logiciel ou du matériel sur le site Web. $t(ns.public:terms.org) se réserve tous les droits (y compris les droits d'auteur et marque) à tous les éléments sur $t(ns.layout:title) et tous les moyens pour faire valoir leurs droits à la pleine. $t(ns.layout:title) n'est pas destiné à toute personne devant toute juridiction qui interdit la publication ou l'accès à $t(ns.layout:title) (en raison de la nationalité de la personne, résidence ou autre). Les personnes auxquelles s'appliquent ces interdictions ne doivent pas accéder $t(ns.layout:title) interdite.",
+			"p Bien que le prix a utilisé toutes les précautions raisonnables pour s'assurer que l'information est exacte à $t(ns.layout:title) au moment de la publication, ne peut pas faire $t(ns.public:terms.org), ni ses partenaires contractuels ne peuvent donner aucune assurance explicite ou implicite ou garantie (y compris la responsabilité envers les tiers) quant à l'exactitude, la fiabilité ou l'exhaustivité de l'information . Les opinions et autres informations sur $t(ns.layout:title) sont sujets à changement sans préavis. $t(ns.public:terms.org) utilise $t(ns.layout:title) pas de vous fournir ou d'autres renseignements de tiers.",
+			"h4 Accéder",
+			"p Après avoir accepté de l'utilisation des conditions d'Ivoire et la libération par le prix pour les clients et les utilisateurs l'autorisation d'accès individuelle est accordée. Il est composé de l'identifiant, un nom d'utilisateur par défaut et un mot de passe choisi par l'utilisateur, cela peut être changé par l'utilisateur.",
+			"h4 Devoir de diligence du client / utilisateur",
+			"p L'utilisateur de l'application Web est nécessaire pour conserver leur nom d'utilisateur et mot de passe secret et à protéger contre l'utilisation abusive par des personnes non autorisées. L'utilisateur s'engage à assumer toutes les conséquences découlant de l'utilisation abusive de son nom d'utilisateur ou mot de passe.",
+			"p Si le client a des raisons de croire que des tiers non autorisés sont conscients de leur nom d'utilisateur et / ou son mot de passe, il doit changer le mot de passe immédiatement et d'être informé sur les prix.",
+			"p L'utilisateur est obligé de changer le mot de passe s'il veut priver les autres utilisateurs de l'autorisation d'applications web.",
+			"h4 Aucune garantie",
+			"p $t(ns.public:terms.org) fournit des informations sans garantie d'aucune sorte. Elle suppose en outre aucune responsabilité, et il ne donne aucune garantie que les fonctions de $t(ns.layout:title) ne sera pas interrompu ou sans erreur, ni que les défauts seront corrigés, ou que $t(ns.layout:title) ou le serveur concerné sont exempts de virus ou d'éléments nuisibles.",
+			"h4 Blocage de l'accès",
+			"p L'utilisateur peut à tout moment demander de $t(ns.public:terms.org) que son accès est bloqué. Un déblocage a lieu exclusivement par l'entremise d'une demande écrite. $t(ns.public:terms.org) se réserve le droit de limiter, dans des cas justifiés (par exemple l'entretien ou en cas de menaces à la sécurité ou de violations de dispositions sur la confidentialité) l'accès à $t(ns.layout:title) ou un bloc. Dans de tels cas, le prix peut exiger que le client est légitime sous une autre forme.",
+			"p $t(ns.public:terms.org) n'assume aucune responsabilité pour les dommages causés par le blocage des accès.",
+			"h4 Utilisation de l'application Web à partir de l'étranger",
+			"p Pour l'utilisation de $t(ns.layout:title) de l'étranger peut être violé les dispositions de la loi étrangère. Il est pour le client de se renseigner à ce sujet. $t(ns.public:terms.org) décline toute responsabilité à cet égard.",
+			"h4 Désistement",
+			"p Toute responsabilité de $t(ns.public:terms.org) (y compris la négligence) pour dommages directs ou indirects résultant de l'accès aux éléments de $t(ns.layout:title) ou de leur utilisation (ou l'impossibilité d'accéder ou d'utiliser) est exclue.",
+			"h4 Lier",
+			"p $t(ns.public:terms.org) n'a pas coché la case «lié» à des sites Web $t(ns.layout:title) et n'est pas responsable pour le contenu des autres sites qui sont liés à $t(ns.layout:title). L'utilisation de liens vers d'autres sites est à vos risques et périls.",
+			"h4 E-mail de livraison",
+			"p La transmission des e-mails peuvent être cryptées et peuvent inclure les risques suivants: Les données peuvent être interceptées par des tiers et vu. Ce prix est considéré comme un expéditeur. Cela permet à des tiers de reconnaître vos relations avec $t(ns.public:terms.org). En fournissant votre adresse e-mail, l'utilisateur confirme les risques ci-dessus ont été constatées et d'envoyer la transmission du service au sein de l'information en ligne fourni par $t(ns.public:terms.org) à l'adresse e-mail.",
+			"p Il est absolument interdit de l'application Web pour la prolifération des spams et des virus à utiliser. Une infraction a le blocage immédiat de l'accès à suivre. De nouvelles mesures juridiques ne sont pas exclus.",
+			"h4 Discrétion",
+			"p L'information, l'intelligence et les rapports de la société $t(ns.public:terms.org), qui a accordé au client par voie électronique, sont destinés uniquement à la clientèle et confidentiel.",
+			"p Pour cette raison, s'est engagé à le client / utilisateur, ce qui il a gardé le secret à partir de données $t(ns.public:terms.org) envoyées par son compte e-mail à travers lequel il reçoit ces données et les programmes dans lesquels il enregistre les données collectées contre $t(ns.public:terms.org) ingérence de la part des tiers non autorisés protégés. Est-ce le client / utilisateur de ces règles à tout moment, résilier le contrat de rapport qualité-prix, avec effet immédiat, sans que le prix doit effectuer un remboursement.",
+			"h4 Politique de confidentialité",
+			"p $t(ns.public:terms.org) se conformer aux dispositions légales relatives à la protection des données. Tout dans le cadre de l'enregistrement et l'utilisation des données générées au cours de la applicable aux seules fins du contrat et aux fins de la facturation, stockées et utilisées.",
+			"p Le client / utilisateur est conscient que dans le but de fournir certaines fonctionnalités dans les applications Web de la société $t(ns.public:terms.org), pour des raisons techniques \"cookies\" doit être réglé. Le client / utilisateur s'engage à la mise en de \"cookies\".",
+			"h4 Sécurité et liberté de toute ingérence",
+			"p $t(ns.public:terms.org) donne la sécurité et la liberté de toute ingérence des applications Web de leur plus grande attention. Néanmoins, elle ne peut garantir en raison de la nature de l'Internet, la sécurité et la liberté de toute ingérence. Le client / l'utilisateur est invité à faire ses propres mesures supplémentaires pour accroître la sécurité.",
+			"h4 Les changements des conditions d'utilisation",
+			"p $t(ns.public:terms.org) se réserve le droit de modifier ces conditions d'utilisation d'Ivoire et l'étendue de leurs applications web à tout moment ou de s'adapter aux évolutions technologiques et juridiques.",
+			"h4 Résiliation",
+			"p L'utilisation d'une application web $t(ns.public:terms.org) peut toujours être fait.",
+			"p L'avis doit être faite par écrit par l'intermédiaire du formulaire de contact de la société $t(ns.public:terms.org). Une confirmation de la résiliation des garanties de prix que les données ne sera possible après la réception des paiements dus sur tous les systèmes définitivement supprimés. Cela comprend toutes les données stockées, y compris toutes les sauvegardes créées et des données historiques.",
+			"br",
+			"h4 Financier",
+			"h5 Prix",
+			"p Les prix sont $t(ns.layout:title) ressort de la page Web correspondante. Prix ​​et caractéristiques électroniques du prix peut changer à tout moment.",
+			"h5 Modalités de paiement",
+			"p $t(ns.public:terms.org) envoie une offre pour acquérir en peu de temps une facture par e-mail sur les conditions des services en ligne. Ce doit être payé en totalité dans les 10 jours. 2maliger malgré les rappels, le projet de loi n'est pas payé, la ligne a bloqué l'accès à l'application Web pertinentes.",
+			"h5 Droit applicable",
+			"p Notre contrat est régi par le droit suisse. Termes et conditions sauf stipulation contraire, les dispositions du Code suisse des obligations l'article 394 et suivants sont valables pour le simple travail.",
+			"br",
+			"h4 Juridiction",
+			"p La compétence est exclusivement Zurich, Suisse.",
+			"br",
+			"p En vigueur à compter de Juillet 2012"
+		]
+	},
+	"feedback": {
+		"info": "Donnez-nous vos commentaires.",
+		"message": "message...",
+		"send": "envoyer"
+	},
+	"tutorial": {
+		"titleInfo": " ",
+		"register": "S'inscrire et se connecter",
+		"registerInfo": " ",
+		"memberProfile": "Changement de profil",
+		"memberProfileInfo": " ",
+		"newOrganisation": "Créer $t(ns.common:organisation)",
+		"newOrganisationInfo": " ",
+		"addMember": "Ajouter $t(ns.common:member)",
+		"addMemberInfo": " ",
+		"addChildToGroup": "Ajouter $t(ns.common:children) ou $t(ns.common:group)",
+		"addChildToGroupInfo": " ",
+		"editChild": "Changement de profil d'un $t(ns.common:child)",
+		"editChildInfo": " ",
+		"docChild1": "Documentées observations I ($t(ns.common:child))",
+		"docChild1Info": " ",
+		"docChild2": "Documentées observations II ($t(ns.common:child))",
+		"docChild2Info": " ",
+		"docGroup": "Documentées observations ($t(ns.common:group))",
+		"docGroupInfo": " ",
+		"lists": "Imprimer lists",
+		"listsInfo": " ",
+		"archive": "Archiver $t(ns.common:children)",
+		"archiveInfo": "Par exemple, en transition à les primaires.",
+		"credits": "Achetér $t(ns.common:credits)",
+		"creditsInfo": "Des $t(ns.common:credits) sont nécessaires pour activer un $t(ns.common:child)."
+	},
+	"faq": {
+		"faqs": [
+			{
+				"title": "Dois-je payer quelque chose si je m'inscrire?",
+				"content": "Non, n'importe qui peut s'inscrire gratuitement. Vous ne payez que si vous achetez des crédits."
+			},
+			{
+				"title": "Comment puis-je changer mon mot de passe?",
+				"content": "En haut à droite, cliquez sur votre photo ou son nom et votre $t(ns.common:password) de choisir le changement.</br>Vous pouvez maintenant définir s'adapter à l'entrée de leur ancien $t(ns.common:password), un nouveau $t(ns.common:password)."
+			},
+			{
+				"title": "Je me suis inscrit et maintenant je ne vois rien?",
+				"content": "Ceci est normal, parce que si vous avez enregistré, vous devez également ajouter encore une $t(ns.common:organisation) ou quelqu'un d'autre, vous devez ajouter à sa $t(ns.common:organisation).</br>Pour ajouter une $t(ns.common:organisation) clic \"$t(ns.app:profile.addOrganisation)\"."
+			},
+			{
+				"title": "Comment puis-je télécharger une photo?",
+				"content": "Pour télécharger une photo, vous devez utiliser Chrome ou Firefox.</br>Si vous avez un tel navigateur, vous pouvez télécharger des images sur $t(ns.common:userProfile), $t(ns.common:organisations), $t(ns.common:groups) et $t(ns.common:children)."
+			},
+			{
+				"title": "Ma $t(ns.common:organisation) est bloqué! Qu'est-ce que ça veut dire?",
+				"content": "Si vous ne payez pas vos factures votre $t(ns.common:organisation) bloqué.</br>En état ​​verrouillé, vous ne pouvez rien faire, sauf utiliser vos $t(ns.common:credits)."
+			},
+			{
+				"title": "Quelle est la différence entre un $t(ns.common:memberAdmin) et un $t(ns.common:member)?",
+				"content": "L'$t(ns.common:memberAdmin) peut également acheter des forfaits, ajouter d'autres $t(ns.common:members) et faire des $t(ns.common:members) des $t(ns.common:memberAdmins)."
+			},
+			{
+				"title": "Comment puis-je ajouter un $t(ns.common:member)",
+				"content": "Si l'$t(ns.common:member) est déjà enregistré, il vous suffit de spécifier le nom du superviseur.</br>Si la personne a encore un profil, vous pouvez lui envoyer une invitation en entrant l'adresse $t(ns.common:email)."
+			},
+			{
+				"title": "J'ai oublié mon $t(ns.common:password)! Maintenant quoi?",
+				"content": "Allez à l'écran de connexion et cliquez sur \"<a href='/?deauth=1#passwordReset'>oublié $t(ns.common:password)</a>\"."
+			}
+		]
+	},
+	"pricing": {
+		"title": "Achetez des $t(ns.common:credits)",
+		"info": "$t(ns.app:payment.pricing.text)",
+		"once": "uniquement",
+		"register": "Inscrivez-vous maintenant!"
+	}
+}

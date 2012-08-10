@@ -1,0 +1,30 @@
+.navbar.navbar-fixed-top
+    .navbar-inner
+        .container
+
+            //.btn-navbar is used as the toggle for collapsed navbar content
+            a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+ 
+            // Be sure to leave the brand out there if you want it shown
+            a.brand(href='/') i18next - webtranslate
+
+            // Everything you want hidden at 940px or less, place within here
+            .nav-collapse
+
+                ul.nav.nav-lng.pull-right
+                    li.setDE: a(href='javascript:;') de
+                    li.setFR: a(href='javascript:;') fr
+                    li.setIT: a(href='javascript:;') it
+
+                ul.nav.pull-right
+                    li
+                        a(href='#register')
+                            | registrieren
+              
+                    li
+                        a(href='/')
+                            i.icon-chevron-left
+                            | zurück

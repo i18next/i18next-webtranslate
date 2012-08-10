@@ -1,0 +1,39 @@
+{
+    "title": "lebdo",
+    "copyright": "© 2012",
+    "subheader": {
+    	"home": "maison",
+    	"faq": "FAQ",
+    	"pricing": "modèles de tarification",
+    	"tutorial": "visite guidée"
+    },
+    "header": {
+    	"back": "retour à la page principale",
+        "language": {
+            "title": "langue",
+            "germanShort": "de",
+            "german": "deutsch",
+            "frenchShort": "fr",
+            "french": "français",
+            "italianShort": "it",
+            "italian": "italiano"
+        },
+        "user": {
+            "title": "utilisateur",
+            "memberProfile": "mon $t(ns.common:userProfile)",
+            "password": "$t(ns.common:change) $t(ns.common:password) / $t(ns.common:username)",
+            "profile": "mon $t(ns.common:groups)",
+            "logout": "déconnectez"
+        }
+    },
+    "extra": {
+        "about": "a propos",
+        "aboutUs": "a propos de nous",
+        "help": "assistance",
+        "faq": "foire aux questions ($t(ns.layout:subheader.faq))",
+        "tutorial": "$t(ns.layout:subheader.tutorial)",
+        "feedback": "feedback",
+        "legal": "légales",
+        "privacy": "sécurité"
+    }
+}  

@@ -1,0 +1,250 @@
+{
+	"videoNotSupported": "Video nicht unterstützt!",
+	"index": {
+		"introduction": [
+			"#Willkommen bei $t(ns.layout:title)!",
+			"Die **le**hrplanbasierte **B**eobachtungs**do**kumentation im $t(ns.common:organisation)."
+		],
+		"registerInfo": [
+			"p Registrieren Sie sich noch heute kostenlos!",
+			"p Damit Sie gleich loslegen können schenkt Ihnen $t(ns.layout:title) die ersten $t(ns.common:credits) zum aktivieren Ihrer $t(ns.common:children) gratis!"
+		],
+		"features": {
+			"monitoring": {
+				"title": "Beobachtung und Dokumentation",
+				"items": [
+					"Dokumentieren Sie Ihre Beobachtungen gezielt nach Bildungsziele." ,
+					"Dokumentieren Sie allgemeine Beobachtungen eines Kindes."
+				]
+			},
+			"rating": {
+				"title": "$t(ns.common:rating) und $t(ns.common:chart)",
+				"items": [
+					"Beurteilen Sie den Fortschritt eines Kindes oder einer ganzen $t(ns.common:group).",
+					"Machen Sie sich einen Überblick über ein $t(ns.common:child) oder einer ganzen $t(ns.common:group) mit Hilfe der $t(ns.common:charts)."
+				]
+			},
+			"lists": {
+				"title": "$t(ns.common:lists)",
+				"items": [
+					"Drucken Sie bequem Adress- / Telefonlisten oder Klassenspiegel." ,
+					"Erstellen Sie eine Telefonalarmliste."
+				]
+			},
+			"archive": {
+				"title": "Archiv",
+				"items": [
+					"Archivieren Sie $t(ns.common:children), welche in die Primarstufe wechseln. Alle Daten stehen Ihnen für später noch zu Verfügung."
+				]
+			},
+			"pricing": {
+				"title": "Faire Preise",
+				"items": [
+					"Bezahlen Sie bedarfsgerecht genau soviel wie Sie benötigen.",
+					"Einmal gekaufte $t(ns.common:credits) (für die Aktivierung eines Kindes) verfallen nicht."
+				]
+			},
+			"security": {
+				"title": "Sicherheit",
+				"items": [
+					"Sie bestimmen wer Einsicht in Ihre Daten hat.",
+					"Wir kümmern uns um die Sicherheit Ihrer Daten."
+				]
+			},
+			"cross": {
+				"title": "Cross-Everywhere",
+				"items": [
+					"Nutzen Sie $t(ns.layout:title), jederzeit von überall.",
+					"Ungeachtet ob von PC, Tablet oder Smartphone."
+				]
+			}
+		},
+		"browser": [
+			"| Einzelne Features werden von einigen Browsern nicht unterstützt. Wir empfehlen die Nutzung von ",
+			"a(href='http://www.google.com/chrome/', target='_new') Chrome ",
+			"| oder ",
+			"a(href='http://www.mozilla.org/de/firefox/new/', target='_new') Firefox."
+		],
+		"compatability": [
+			"p Unterstützte Browser / Devices:",
+			"p.small $t(ns.layout:title) baut auf den modernen Internetstandard von html5 auf. Entsprechend wird jeder Browser unterstützt, welcher diesen unterstützt.",
+			"p.small Nutzen Sie $t(ns.layout:title) von Ihrem PC, Tablet oder Smartphone."
+		],
+		"regions": {
+			"info": [
+				"p Zur Zeit unterstützt $t(ns.layout:title) die $t(ns.common:curriculums) folgender Kantone:",
+				"p.small Wir arbeiten daran möglichst bald alle $t(ns.common:curriculums) der schweizer Kantone verfügbar zu machen.",
+				"p.small Sollte der $t(ns.common:curriculum) Ihres Kantones noch nicht unterstützt sein, nehmen Sie doch mit uns Kontakt auf.",
+				"p.small Folgende Kantone sind bereits unterstützt:"
+			],
+			"1": [
+				"Aargau" ,
+				"Bern",
+				"neu: Basel-Landschaft",
+                "neu: Basel-Stadt",
+                "neu: Freiburg *",
+                "neu: Genf *",
+                "neu: Jura *",
+                "neu: Lausanne *"
+			],
+			"2": [
+				"neu: Neuenburg *",
+                "Schaffhausen",
+                "neu: Solothurn *",
+                "St. Gallen",
+                "Thurgau",
+                "Zug",
+                "Zürich"
+			],
+			"appendix": "* Le Plan d’études romand"
+		}
+	},
+	"about": {
+		"content": [
+			"p Wir sind gerade dran eine neue Firma zu gründen...",
+			"p Bald gibt es hier mehr infos..."
+     	]
+	},
+	"privacy": {
+		"content": [
+			"p Auf $t(ns.layout:title) können teilweise sensible, personenbezogene Daten verwaltet werden. Folgende technische und organisatorische Punkte stellen sicher, dass Informationen nur für die bestimmten Zwecke eingesetzt werden:",
+	        "h4 Passwortschutz",
+	        "p Jeder Zugang ist Passwort geschützt. Als Anwender verpflichten sich die Benutzer dazu, Zugänge zum System nur für die Arbeit innerhalb ihrer Gruppe bzw. Klasse zu verwenden und Passwörter gemäss Sicherheitsrichtlinien regelmässig zu ändern.",
+	        "h4 Verschlüsselte Datenübermittlung",
+	        "p Die Kommunikation zwischen Webserver und Browser wird per SSL verschlüsselt übermittelt. Das SSL-Zertifikat von $t(ns.layout:title) wird von der bekannten Zertifizierungsstelle ",
+	        "    a(href='http://www.ti-swiss.com', target='_new') Twister Informatics ",
+	        "    | herausgegeben, welche die Identifikation des Website-Betreibers sowie des Webservers prüft."
+     	]
+	},
+	"terms": {
+		"org": "XYZ",
+		"content": [
+			"h4 Bedingungen",
+			"p Mit dem Zugriff auf diese Webapplikation erklären Sie, dass Sie die folgenden $t(ns.common:terms) und rechtlichen Informationen im Zusammenhang mit dieser Webapplikation (und den darin enthaltenen Elementen) verstanden haben und anerkennen. Wenn Sie mit den nachfolgenden Bedingungen nicht einverstanden sind, unterlassen Sie den Zugriff auf diese Website und den folgenden Seiten (nachfolgend \"$t(ns.layout:title)\" genannt).",
+			"h4 Copyright",
+			"p Sämtliche Elemente auf diesen Webseiten gehören ausschliesslich und umfassend $t(ns.public:terms.org) (insbesondere Urheber- und andere Rechte), sofern nichts anderes erwähnt ist. Die Elemente sind nur für Browsingzwecke frei benutzbar; falls Elemente ganz oder teilweise in irgendeiner Form - elektronisch oder schriftlich - reproduziert werden, ist die ausdrückliche Nennung von $t(ns.public:terms.org) erforderlich. Ausserdem muss für die Widerveröffentlichung jeglicher Elemente die Zustimmung von $t(ns.public:terms.org) eingeholt werden. Eigentümer von $t(ns.layout:title) ist alleine $t(ns.public:terms.org). Kein Bestandteil von $t(ns.layout:title) ist so konzipiert, dass durch deren Nutzung eine Lizenz oder ein Recht zur Nutzung eines Bildes, einer eingetragenen Marke oder eines Logos eingeräumt wird.",
+			"p Durch ein Herunterladen oder ein Kopieren der Webseite werden Ihnen keinerlei Rechte im Hinblick auf die Software oder Elemente auf der Webseite übertragen. $t(ns.public:terms.org) behält sich sämtliche Rechte (insbesondere Urheber- und Markenrechte) hinsichtlich aller Elemente auf $t(ns.layout:title) vor und wird sämtliche Möglichkeiten zur Durchsetzung dieser Rechte vollumfänglich wahrnehmen. $t(ns.layout:title) ist nicht für Personen bestimmt, die einem Gerichtsstand unterstehen, der die Publikation bzw. den Zugang zu $t(ns.layout:title) (aufgrund der Nationalität der betreffenden Person, ihres Wohnsitzes oder aus anderen Gründen) verbietet. Personen, auf die solche Einschränkungen zutreffen, ist der Zugriff auf $t(ns.layout:title) nicht gestattet.",
+			"p Obwohl $t(ns.public:terms.org) all ihre Sorgfalt darauf verwendet hat, dass die Informationen auf $t(ns.layout:title) zum Zeitpunkt der Veröffentlichung genau sind, kann weder $t(ns.public:terms.org) noch ihre Vertragspartner eine explizite bzw. implizite Zusicherung oder Gewährleistung (auch gegenüber Dritten) hinsichtlich der Genauigkeit, Zuverlässigkeit oder Vollständigkeit der Information machen. Meinungen und sonstige Informationen auf $t(ns.layout:title) können jederzeit ohne Ankündigung geändert werden. $t(ns.public:terms.org) benutzt $t(ns.layout:title) nicht, um Ihnen oder sonstigen Dritten Informationen zukommen zu lassen.",
+			"h4 Zugangsberechtigung",
+			"p Nach der Zustimmung zu den $t(ns.common:terms) und Freischaltung durch $t(ns.public:terms.org) wird dem Kunden/Usern eine individuelle Zugangsberechtigung erteilt. Diese setzt sich zusammen aus dem Login-Namen, einem vorgegebenen Benutzernamen und einem vom User gewähltes Passwort, wobei dieses vom User geändert werden kann.",
+			"h4 Sorgfaltspflicht des Kunden/Users",
+			"p Der User der Webapplikation ist verpflichtet, seinen Benutzernamen und sein Passwort geheim zu halten und gegen missbräuchliche Verwendung durch Unbefugte zu schützen. Der User trägt sämtliche Folgen, die sich aus der missbräuchlichen Verwendung seines Benutzernamens oder seines Passwortes ergeben.",
+			"p Sofern der Kunde Anhaltspunkte dafür hat, dass nicht autorisierte Dritte Kenntnis von seinem Benutzernamen und/oder seinem Passwort haben, hat er das Passwort unverzüglich zu ändern und $t(ns.public:terms.org) darüber in Kenntnis zu setzen.",
+			"p Der User ist verpflichtet, das Passwort zu ändern, wenn er anderen Usern der Webapplikation die Berechtigung entziehen will.",
+			"h4 Keine Gewährleistung",
+			"p $t(ns.public:terms.org) stellt Informationen ohne jegliche Gewähr zur Verfügung. Sie übernimmt ausserdem darüber keine Verantwortung und gibt keine Garantie dafür ab, dass die Funktionen auf $t(ns.layout:title) nicht unterbrochen werden oder fehlerlos sind, dass Fehler behoben werden oder dass $t(ns.layout:title) oder der jeweilige Server frei von Viren oder schädlichen Bestandteilen ist.",
+			"h4 Sperrung des Zugangs",
+			"p Der User kann jederzeit von $t(ns.public:terms.org) verlangen, dass sein Zugang gesperrt wird. Eine Aufhebung der Sperrung erfolgt ausschliesslich auf schriftliches Gesuch hin. $t(ns.public:terms.org) behält sich vor, in begründeten Fällen (z.B. Wartung oder im Falle von Sicherheitsrisiken oder bei Verletzung von Vertraulichkeitsbestimmungen) den Zugang zu $t(ns.layout:title) einzuschränken oder zu sperren. In solchen Fällen kann $t(ns.public:terms.org) verlangen, dass sich der Kunde in anderer Form legitimiert.",
+			"p $t(ns.public:terms.org) übernimmt keine Haftung für Schäden, die durch die Sperrung des Zugangs entstehen.",
+			"h4 Benutzung der Webapplikation aus dem Ausland",
+			"p Bei der Benützung von $t(ns.layout:title) aus dem Ausland können Bestimmungen ausländischen Rechts verletzt werden. Es ist Sache des Kunden, sich darüber zu informieren. $t(ns.public:terms.org) lehnt diesbezüglich jegliche Haftung ab.",
+			"h4 Haftungsausschluss",
+			"p Jegliche Haftung von $t(ns.public:terms.org) (einschliesslich Fahrlässigkeit) für Schäden oder Folgeschäden, die sich aus dem Zugriff auf die Elemente von $t(ns.layout:title) oder deren Benutzung (bzw. aus der Unmöglichkeit des Zugriffs oder der Benutzung) ergeben, ist ausgeschlossen.",
+			"h4 Verlinkung",
+			"p $t(ns.public:terms.org) hat die mit $t(ns.layout:title) \"verlinkten\" Webseiten nicht überprüft und ist nicht verantwortlich für den Inhalt anderer Webseiten, die mit $t(ns.layout:title) verlinkt sind. Das Herstellen von Verbindungen zu anderen Webseiten erfolgt auf eigenes Risiko.",
+			"h4 $t(ns.common:email) Versand",
+			"p Die Übermittlung von $t(ns.common:emails) kann unverschlüsselt erfolgen und kann folgende Risiken beinhalten: Die Daten können durch Drittpersonen abgefangen und eingesehen werden. Dabei ist $t(ns.public:terms.org) als Versender ersichtlich. Dies erlaubt Dritten Ihre Beziehungen mit $t(ns.public:terms.org) zu erkennen. Durch Angabe der $t(ns.common:email) Adresse bestätigt der Benutzer die vorgenannten Risiken zur Kenntnis genommen zu haben und die Übermittlung der im Rahmen der Online Dienstleistung angebotenen Informationen durch $t(ns.public:terms.org) an die angegebene $t(ns.common:email) Adresse zu versenden.",
+			"p Es ist absolut untersagt die Webapplikation für die Verbreitung von SPAM und von Viren Mails zu benutzten. Eine Zuwiderhandlung hat die sofortige Sperrung des Zugangs zur Folge. Weitere rechtliche Schritte sind nicht ausgeschlossen.",
+			"h4 Diskretion",
+			"p Informationen, Auskünfte und Berichte von $t(ns.public:terms.org), welche diese dem Kunden auf elektronischem Weg erteilt, sind ausschliesslich für den Kunden bestimmt und vertraulich zu behandeln.",
+			"p Aus diesem Grund verpflichtet sich der Kunde/User, die ihm von $t(ns.public:terms.org) übermittelten Daten geheim zu halten, indem er seinen $t(ns.common:email)-Account, über welchen er diese Daten erhält und die Programme, in welchen er die von $t(ns.public:terms.org) zusammengestellten Daten abspeichert, gegen Eingriffe unberechtigter Dritter schützt. Handelt der Kunde/User diesen Bestimmungen zuwider, kann $t(ns.public:terms.org) das Vereinbarungsverhältnis mit sofortiger Wirkung beenden, ohne dass $t(ns.public:terms.org) eine Rückzahlung zu leisten hat.",
+			"h4 Datenschutz",
+			"p $t(ns.public:terms.org) beachtet die gesetzlichen Bestimmungen des Datenschutzes. Alle im Rahmen der Registrierung erhobenen sowie die während der Nutzung entstehenden Daten werden ausschliesslich für den Zweck der Vertragserfüllung sowie zum Zweck der Abrechnung erhoben, gespeichert und genutzt.",
+			"p Der Kunde/User ist sich bewusst, dass zur Gewährleistung bestimmter Funktionalitäten bei den Webapplikationen von $t(ns.public:terms.org) aus technischen Gründen auch „Cookies“ gesetzt werden müssen. Der Kunde/User stimmt der Setzung von „Cookies“ zu.",
+			"h4 Sicherheit und Störungsfreiheit",
+			"p $t(ns.public:terms.org) schenkt der Sicherheit und Störungsfreiheit ihrer Web-Applikationen grösste Aufmerksamkeit. Trotzdem kann sie aufgrund der Besonderheiten des Internets die Sicherheit und Störungsfreiheit nicht garantieren. Dem Kunden/User wird empfohlen, eigene zusätzliche Vorkehrungen zur Steigerung der Sicherheit zu treffen.",
+			"h4 Änderungen der $t(ns.common:terms)",
+			"p $t(ns.public:terms.org) behält sich das Recht vor, diese $t(ns.common:terms) sowie den Umfang ihrer Webapplikationen jederzeit zu ändern oder an technische oder rechtliche Entwicklungen anzupassen.",
+			"h4 Kündigung",
+			"p Eine Nutzung einer Webapplikation von $t(ns.public:terms.org) kann immer erfolgt werden.",
+			"p Die Kündigung muss schriftlich über das Kontakt Formular von $t(ns.public:terms.org) erfolgen. Eine Bestätigung der Kündigung durch $t(ns.public:terms.org) garantiert, dass die Daten nach Eingang der möglich geschuldeten Zahlungen unwiderruflich auf allen Systemen gelöscht werden. Dies umfasst sämtliche gespeicherten Daten inkl. allen angelegten Backups und historisierten Daten.",
+			"br",
+			"h4 Finanzielles",
+			"h5 Preise",
+			"p Die Preise der von $t(ns.layout:title) sind aus der jeweiligen Web-Seite ersichtlich. Preisangaben und elektronische Angebote von $t(ns.public:terms.org) können jederzeit ändern.",
+			"h5 Zahlungskonditionen",
+			"p $t(ns.public:terms.org) sendet beim Erwerb eines Angebotes in kurzer Zeit eine Rechnung als $t(ns.common:email) über den Bezug der Online-Dienstleistungen. Diese ist ohne Abzug innerhalb von 10 Tagen zu bezahlen. Wird trotz 2maliger Mahnung die Rechnung nicht beglichen wird der Online Zugang zu der jeweiligen Webapplikation gesperrt.",
+			"h5 Anwendbares Recht",
+			"p Unser Vertrag unterliegt schweizerischem Recht. Soweit diese Geschäftsbedingungen nichts anderes regeln, gelten die Bestimmungen des Schweizerischen Obligationenrechts Art. 394 ff über den einfachen Auftrag.",
+			"br",
+			"h4 Gerichtsstand",
+			"p Der Gerichtsstand ist ausschliesslich Zürich, Schweiz.",
+			"br",
+			"p Gültig ab Juli 2012"
+		]
+	},
+	"feedback": {
+		"info": "Geben Sie uns doch ein Feedback.",
+		"message": "Nachricht...",
+		"send": "senden"
+	},
+	"tutorial": {
+		"titleInfo": " ",
+		"register": "Registrieren und anmelden",
+		"registerInfo": " ",
+		"memberProfile": "Eigenes Profil ändern",
+		"memberProfileInfo": " ",
+		"newOrganisation": "$t(ns.common:organisation) eröffnen",
+		"newOrganisationInfo": " ",
+		"addMember": "$t(ns.common:member) hinzufügen",
+		"addMemberInfo": " ",
+		"addChildToGroup": "$t(ns.common:children) zu $t(ns.common:group) hinzufügen",
+		"addChildToGroupInfo": " ",
+		"editChild": "Profil eines Kindes ändern",
+		"editChildInfo": " ",
+		"docChild1": "Beobachtungen dokumentieren I ($t(ns.common:child))",
+		"docChild1Info": " ",
+		"docChild2": "Beobachtungen dokumentieren II ($t(ns.common:child))",
+		"docChild2Info": " ",
+		"docGroup": "Beobachtungen dokumentieren ($t(ns.common:group))",
+		"docGroupInfo": " ",
+		"lists": "Listen zum ausdrucken",
+		"listsInfo": " ",
+		"archive": "$t(ns.common:children) archivieren",
+		"archiveInfo": "Bspw. bei Übergang in Unterstufe.",
+		"credits": "$t(ns.common:credits) kaufen",
+		"creditsInfo": "$t(ns.common:credits) werden benötigt um ein $t(ns.common:child) zu aktivieren."
+	},
+	"faq": {
+		"faqs": [
+			{
+				"title": "Muss ich etwas bezahlen wenn ich mich registriere?",
+				"content": "Nein, jeder kann sich kostenlos registrieren. Man bezahlt erst wenn man $t(ns.common:credits) erwirbt."
+			},
+			{
+				"title": "Wie kann ich mein Passwort ändern?",
+				"content": "Klicken Sie oben rechts auf ihr Bild oder auf ihren Namen und wählen Sie $t(ns.common:password) ändern.</br>Nun können Sie mit der Eingabe ihres bisherigen Passworts ein neues $t(ns.common:password) setzen."
+			},
+			{
+				"title": "Ich habe mich angemeldet und jetzt sehe ich nichts?",
+				"content": "Das ist normal, denn wenn Sie sich neu registriert haben, müssen Sie auch erst noch einen $t(ns.common:organisation) hinzufügen oder jemand anderes muss Sie in sein Kindergarten hinzufügen.</br>Um ein $t(ns.common:organisation) hinzuzufügen klicken Sie auf \"$t(ns.app:profile.addOrganisation)\"."
+			},
+			{
+				"title": "Wie kann ich ein Bild hochladen?",
+				"content": "Um ein Bild hochzuladen müssen Sie den Chrome oder den Firefox Browser benutzen.</br>Wenn Sie solch ein Browser haben, können Sie für ihr Profil, $t(ns.common:organisations), $t(ns.common:groups) und $t(ns.common:children) Bilder hochladen."
+			},
+			{
+				"title": "Mein $t(ns.common:organisation) ist blockiert! Was heisst das?",
+				"content": "Wenn Sie Ihre Rechnungen nicht begleichen wird der $t(ns.common:organisation) blockiert.</br>Im blockierten Zustand können Sie alles tun ausser Ihre $t(ns.common:credits) einsetzen."
+			},
+			{
+				"title": "Was ist der Unterschied zwischen einem $t(ns.common:memberAdmin) und einem normalen $t(ns.common:member)?",
+				"content": "Ein $t(ns.common:memberAdmin) kann zusätzlich noch Pakete kaufen, weitere $t(ns.common:members) hinzufügen und $t(ns.common:members) zu $t(ns.common:memberAdmins) machen."
+			},
+			{
+				"title": "Wie kann ich einen $t(ns.common:member) hinzufügen?",
+				"content": "Wenn der $t(ns.common:member) bereits registriert ist, können Sie einfach den Namen des Betreuers angeben. Falls die Person jedoch noch kein Profil hat, können Sie ihr eine Einladung schicken indem Sie die $t(ns.common:email) Adresse angeben."
+			},
+			{
+				"title": "Ich habe mein $t(ns.common:password) vergessen! Was nun?",
+				"content": "Gehen Sie zum Anmeldedialog und klicken Sie auf \"<a href='/?deauth=1#passwordReset'>$t(ns.common:password) vergessen</a>\"."
+			}
+		]
+	},
+	"pricing": {
+		"title": "Kaufen Sie $t(ns.common:credits)",
+		"info": "$t(ns.app:payment.pricing.text)",
+		"once": "einmalig",
+		"register": "Jetzt registrieren!"
+	}
+}

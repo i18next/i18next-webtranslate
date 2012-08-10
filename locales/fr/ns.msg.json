@@ -1,0 +1,16 @@
+{
+	"creditUsed": "Sie haben ein $t(ns.common:credit) eingesetzt!",
+	"remainingCredits": "Sie haben noch __credits__ $t(ns.common:credits) zur Verfügung.",
+	"activateChild": "Dieses $t(ns.common:child) ist noch nicht aktiviert! Möchten Sie es aktivieren? Dafür wird ein $t(ns.common:credit) eingesetzt!",
+	"organisationBlocked": "Der $t(ns.common:organisation) wurde gesperrt! Bezahlen Sie bitte die ausstehenden Beträge!",
+	"purchaseCredits": "Der $t(ns.common:organisation) hat keine $t(ns.common:credits) mehr! Möchten Sie $t(ns.common:credits) kaufen?",
+	"noCredits": "Der $t(ns.common:organisation) hat keine $t(ns.common:credits) mehr! Kontaktieren Sie einen $t(ns.common:admin) um weitere $t(ns.common:credits) zu kaufen!",
+	"memberInvited": "$t(ns.common:member) wurde eingeladen!",
+	"lastAdmin": "Sie sind der letzte $t(ns.common:memberAdmin). Ein $t(ns.common:organisation) muss zumindest einen $t(ns.common:memberAdmin) haben.",
+	"confirmAdminRemove": "Sind Sie sicher, dass Sie sich aus diesem $t(ns.common:organisation) entfernen möchten? Sie können wieder von einem anderen $t(ns.common:memberAdmin) hinzugefügt werden!",
+	"noAdminRemove": "Sie können die $t(ns.common:memberAdmins) nicht entfernen. $t(ns.common:memberAdmins) müssen sich selbst entfernen.",
+	"removeMember": "Sind Sie sicher, dass Sie diesen $t(ns.common:member) entfernen möchten?",
+	"confirmUnsetAdmin": "Sind Sie sicher, dass Sie sich die $t(ns.common:adminrights) entziehen möchten? Diese können Ihnen wieder von einem anderen $t(ns.common:memberAdmin) zugewiesen werden!",
+	"noAdminUnset": "Sie können die $t(ns.common:adminrights) eines anderen $t(ns.common:members)s nicht entfernen. Diese können nur von der jeweiligen Person selbst entfernt werden.",
+	"setAdmin": "Sind Sie sicher, dass Sie diesem $t(ns.common:member) $t(ns.common:adminrights) geben möchten?"
+}  

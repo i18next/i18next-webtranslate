@@ -1,0 +1,24 @@
+{
+  "author": "jamuhl"
+  , "name": "i18next-webtranslate"
+  , "version": "0.0.0"
+  , "private": true
+  , "main": "server.js"
+  , "engines": {
+        "node": ">= 0.6.18"
+      , "npm": ">= 1.1.x"
+    }
+  , "dependencies": {
+      "express": ">= 3.0.x"
+    , "stylus": ">= 0.24.0"
+    , "nib": ">= 0.3.2"
+    , "jade": ">= 0.0.1"
+    , "markdown": ">= 0.4.0"
+    , "handlebars": ">= 0.0.1"
+    , "async": ">= 0.1.18"
+    , "lodash": ">= 0.5.x"
+    , "i18next": ">= 1.4.1"
+    }
+  , "devDependencies": {}
+  , "scripts": {}
+}
