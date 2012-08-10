@@ -5,6 +5,7 @@ require([
     "jquery",
     "backbone",
     "i18next",
+    "modules/translate/webTranslator",
 
     // Modules
     "modules/data/appData",
@@ -17,7 +18,7 @@ require([
     "modules/translation/translation"
 ],
 
-function(ns, $, Backbone, i18next) {
+function(ns, $, Backbone, i18next, webTranslator) {
 
     // Shorthand the application namespace
     var app = ns.app;
@@ -64,6 +65,18 @@ function(ns, $, Backbone, i18next) {
         }, function(t) { 
             ns.t = t;
             app.setLng(i18next.lng());
+            done();
+        });
+    });
+
+    app.addAsyncInitializer(function(options, done) {
+        webTranslator.init({
+            languages: ['de', 'fr', 'it'],
+            namespaces: ['ns.app', 'ns.common', 'ns.layout', 'ns.msg'],
+            resGetPath: "locales/resources.json?lng=__lng__&ns=__ns__",
+            dynamicLoad: true
+        }, function() {
+            console.log(webTranslator);
             done();
         });
     });

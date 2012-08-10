@@ -94,20 +94,7 @@ module.exports = function(grunt) {
       "client/dist/release/index.css": [
         "client/assets/css/bootstrap-2.0.2.css",
         "client/assets/css/bootstrap-responsive-2.0.2.css",
-        "client/assets/css/bootstrap-notify.css",
         "client/assets/css/font-awesome-2.0.css",
-        "client/assets/css/themes/base/jquery.ui.core.css",
-        "client/assets/css/themes/base/jquery.ui.resizable.css",
-        "client/assets/css/themes/base/jquery.ui.selectable.css",
-        "client/assets/css/themes/base/jquery.ui.accordion.css",
-        "client/assets/css/themes/base/jquery.ui.autocomplete.css",
-        "client/assets/css/themes/base/jquery.ui.button.css",
-        "client/assets/css/themes/base/jquery.ui.dialog.css",
-        "client/assets/css/themes/base/jquery.ui.slider.css",
-        "client/assets/css/themes/base/jquery.ui.tabs.css",
-        "client/assets/css/themes/base/jquery.ui.datepicker.css",
-        "client/assets/css/themes/base/jquery.ui.progressbar.css",
-        "client/assets/css/themes/base/jquery.ui.theme.css",
         "client/assets/css/chosen-0.9.8.css",
         "client/assets/css/main.css"
       ]
@@ -133,39 +120,39 @@ module.exports = function(grunt) {
     //
     //  To learn more about using the server task, please refer to the code
     //  until documentation has been written.
-    server: {
-      files: { "favicon.ico": "client/favicon.ico" },
+    // server: {
+    //   files: { "favicon.ico": "client/assets/favicon.ico" },
 
-      folders: {
-          "app": "client/app",
-          "assets": "client/assets",
-          "app/templates": "client/assets/templates"
-      },
+    //   folders: {
+    //       "app": "client/app",
+    //       "assets": "client/assets",
+    //       "app/templates": "client/assets/templates"
+    //   },
 
-      debug: {
-        files: { "favicon.ico": "client/favicon.ico" },
+    //   debug: {
+    //     files: { "favicon.ico": "client/favicon.ico" },
 
-        folders: {
-          "app": "client/dist/debug",
-          "assets/js/libs": "client/dist/debug"
-        }
-      },
+    //     folders: {
+    //       "app": "client/dist/debug",
+    //       "assets/js/libs": "client/dist/debug"
+    //     }
+    //   },
 
-      release: {
-        // These two options make it easier for deploying, by using whatever
-        // PORT is available in the environment and defaulting to any IP.
-        host: "0.0.0.0",
-        port: process.env.PORT || 8000,
+    //   release: {
+    //     // These two options make it easier for deploying, by using whatever
+    //     // PORT is available in the environment and defaulting to any IP.
+    //     host: "0.0.0.0",
+    //     port: process.env.PORT || 8000,
 
-        files: { "favicon.ico": "client/favicon.ico" },
+    //     files: { "favicon.ico": "client/favicon.ico" },
 
-        folders: {
-          "app": "client/dist/release",
-          "assets/js/libs": "client/dist/release",
-          "assets/css": "client/dist/release"
-        }
-      }
-    },
+    //     folders: {
+    //       "app": "client/dist/release",
+    //       "assets/js/libs": "client/dist/release",
+    //       "assets/css": "client/dist/release"
+    //     }
+    //   }
+    // },
 
     // This task uses James Burke's excellent r.js AMD build tool.  In the
     // future other builders may be contributed as drop-in alternatives.
