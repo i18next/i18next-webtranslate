@@ -1,0 +1,29 @@
+.tableheader
+	margin-bottom: 15px
+
+.resources
+
+	.resource
+		border-left: solid 3px $green
+		margin: 0 0 10px
+	
+		&.isFallback
+			border-left: solid 3px $orange
+
+			&.toFallback
+				border-left: solid 3px $red
+
+		.key
+			color: $green
+			padding: 0 5px
+	
+			&.isFallback
+				color: $orange
+
+				&.toFallback
+					color: $red
+
+
+@media (min-width: 980px)
+	body
+		margin-top: 60px

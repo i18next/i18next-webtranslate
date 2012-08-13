@@ -1,0 +1,17 @@
+.resource
+	.row-fluid
+		.span2
+			.key
+				{{parseKey key }}
+		.span5
+			{{#if value }}
+			{{parseValue value }}
+			{{else}}
+			&nbsp;
+			{{/if}}
+
+		.span5
+			{{parseValue fallback.value }}
+			
+			.pull-right
+				span.badge.badge-success.fallbackBadge {{ fallback.lng }}

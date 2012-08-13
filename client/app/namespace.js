@@ -26,6 +26,20 @@ function($, _, backstrapp, Backbone, Handlebars, i18next) {
 
         return new Handlebars.SafeString(result);
     });
+
+    Handlebars.registerHelper('parseKey', function(key) {
+       //i18n_key = Handlebars.Utils.escapeExpression(i18n_key);
+       var result = key.replace(new RegExp(' ', 'g'), '<br />&nbsp;&nbsp;');
+
+       return new Handlebars.SafeString(result);
+    });
+
+    Handlebars.registerHelper('parseValue', function(key) {
+       //i18n_key = Handlebars.Utils.escapeExpression(i18n_key);
+       var result = key.replace(new RegExp('\n', 'g'), '<br />');
+
+       return new Handlebars.SafeString(result);
+    });
   
     var ns = _.extend({
 

@@ -1,0 +1,28 @@
+.container
+    .row
+        .span12
+            form.form-inline
+                .field.control-group
+                    select#languages.span5(name='language', data-placeholder='language')
+                .field.control-group
+                    select#namespaces.span5(name='namespace', data-placeholder='namespace')
+
+                button#load.btn.btn-primary load
+
+    .row
+        .span12
+            .row-fluid.tableheader
+                .span2
+                    h4 key
+
+                .span5
+                    h4 specific value
+
+                .span5
+                    h4 displayed value
+
+    .row
+        .span12
+            #resources
+
+

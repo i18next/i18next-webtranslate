@@ -5,20 +5,20 @@ require([
     "jquery",
     "backbone",
     "i18next",
-    "modules/translate/webTranslator",
 
     // Modules
     "modules/data/appData",
+    "modules/translate/resourceLoader",
 
     // common
     "modules/common/common",
     "modules/layout/layout",
 
     // pages
-    "modules/translation/translation"
+    "modules/translate/resourceEditor"
 ],
 
-function(ns, $, Backbone, i18next, webTranslator) {
+function(ns, $, Backbone, i18next, data, resLoader) {
 
     // Shorthand the application namespace
     var app = ns.app;
@@ -70,13 +70,13 @@ function(ns, $, Backbone, i18next, webTranslator) {
     });
 
     app.addAsyncInitializer(function(options, done) {
-        webTranslator.init({
-            languages: ['de', 'fr', 'it'],
+        resLoader.init({
+            languages: ['de-CH', 'fr', 'it'],
             namespaces: ['ns.app', 'ns.common', 'ns.layout', 'ns.msg'],
             resGetPath: "locales/resources.json?lng=__lng__&ns=__ns__",
+            fallbackLng: "de",
             dynamicLoad: true
         }, function() {
-            console.log(webTranslator);
             done();
         });
     });
