@@ -43,11 +43,12 @@ function(Backbone, ns, resSync, i18n) {
         },
 
         events: {
-            'click #load': 'ui_load'
+            'click #load': 'ui_load',
+            'click #add': 'ui_add'
         },
 
         ui_load: function(e) {
-            e.preventDefault();
+            if (e) e.preventDefault();
 
             var lng = this.$('#languages').val()
               , ns = this.$('#namespaces').val();
@@ -58,6 +59,47 @@ function(Backbone, ns, resSync, i18n) {
             });
 
             this.resources.show(colView);
+        },
+
+        ui_add: function(e) {
+            e.preventDefault();
+            var self = this;
+
+            var key = this.$('#addKey').val();
+
+            resSync.update(
+                this.$('#languages').val(),
+                this.$('#namespaces').val(),
+                key,
+                '',
+                function(err) {
+                    self.$('#addKey').val('')
+                        .blur();
+
+                    var binding = self.bindTo(self.resources.currentView, 'render', function() {
+                        setTimeout(function() {
+                            var sel = '#' + key.replace(/\./g, '');
+                            var checkSel = '.resources:not(:has(' + sel + '))';
+                            while($(sel) < 0) {
+                                // doNothing
+                            }
+                            $.smoothScroll({
+                                offset: -90,
+                                direction: 'top', // one of 'top' or 'left'
+                                scrollTarget: sel, // only use if you want to override default behavior
+                                //afterScroll: null,   // function to be called after scrolling occurs. "this" is the triggering element
+                                easing: 'swing',
+                                speed: 400
+                            });
+                            self.unbindFrom(binding);
+                        }, 200);
+                    }, self);
+
+                    self.resources.currentView.collection.sort();
+                
+                }
+            );
+
         },
         
         onRender: function() {
@@ -75,6 +117,8 @@ function(Backbone, ns, resSync, i18n) {
                 item = '<option value="' + opt + '">' + opt + '</option> ';
                 this.$('#namespaces').append($(item));
             }
+
+            this.ui_load();
         }
             
     });
@@ -96,7 +140,9 @@ function(Backbone, ns, resSync, i18n) {
             'click .cancel': 'ui_cancelEdit',
             'click .save': 'ui_save',
             'click .test': 'ui_toggleTest',
-            'click .refresh': 'ui_refreshTest'
+            'click .refresh': 'ui_refreshTest',
+            'click .multiline': 'ui_toggleArray',
+            'click .singleline': 'ui_toggleArray'
         },
 
         ui_edit: function(e) {
@@ -174,10 +220,19 @@ function(Backbone, ns, resSync, i18n) {
             var self = this;
 
             var opts = {};
-            var args = self.$('.i18nOptions').val().replace(new RegExp(' ', 'g'), '').split(/\n|\r/);
-            for (var i = 0, len = args.length; i < len; i++) {
-                var split = args[i].split('=');
-                opts[split[0]] = split[1];
+            
+            var args = self.$('.i18nOptions').val();
+            if (args.length > 0) {
+                args = args.replace(new RegExp(' ', 'g'), '').split(/\n|\r/);
+                for (var i = 0, len = args.length; i < len; i++) {
+                    var split = args[i].split('=');
+                    if ($.isNumeric(split[1])) {
+                        split[1] = parseInt(split[1], 10);
+                    } else {
+                        split[1] = split[1].replace(/'|"/g, '');
+                    }
+                    opts[split[0]] = split[1];
+                }
             }
 
             function test(t, o) {
@@ -214,7 +269,22 @@ function(Backbone, ns, resSync, i18n) {
             });
         },
 
+        ui_toggleArray: function(e) {
+            e.preventDefault();
+
+            if (this.model.get('isArray')) {
+                this.model.set('isArray', false);
+            } else {
+                this.model.set('isArray', true);
+            }
+            this.render();
+        },
+
         onRender: function() {
+            this.$el.attr('id', this.model.id.replace(/\./, ''))
+                .attr('name', this.model.id.replace(/\./, ''))
+                .attr('href', '/#' + this.model.id.replace(/\./, ''));
+
             var fallbackLng = this.model.get('fallback').lng;
             if (fallbackLng !== this.model.get('lng')) {
                 this.$('.resource').addClass('isFallback');
@@ -229,6 +299,12 @@ function(Backbone, ns, resSync, i18n) {
                  this.$('.fallbackBadge').removeClass('badge-success');
                 this.$('.fallbackBadge').removeClass('badge-warning');
                 this.$('.fallbackBadge').addClass('badge-error');
+            }
+
+            if (this.model.get('isArray')) {
+                this.$('.multiline').hide();
+            } else {
+                this.$('.singleline').hide();
             }
         }
 

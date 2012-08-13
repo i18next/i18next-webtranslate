@@ -1,6 +1,7 @@
 .resource
 	.row-fluid
 		.span2
+			a.scrollTo(style='display: none;')
 			.key
 				{{parseKey key }}
 		.span5
@@ -26,6 +27,10 @@
 		.span2 &nbsp;
 		.span5
 			.commands
+				button.btn.btn-mini.singleline
+					i.icon-minus
+				button.btn.btn-mini.multiline
+					i.icon-align-justify
 				.pull-right.editCommands(style='display: none;')
 					button.btn.btn-mini.cancel
 						i.icon-remove

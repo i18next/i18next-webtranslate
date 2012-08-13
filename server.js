@@ -5,8 +5,8 @@ var express = require('express')
 
 // use filesys
 i18n.init({
-    ns: { namespaces: ['ns.common', 'ns.app', 'ns.layout', 'ns.msg', 'ns.public'], defaultNs: 'ns.common'},
-    preload: ['de', 'fr', 'it'],
+    ns: { namespaces: ['ns.common', 'ns.app', 'ns.layout', 'ns.msg', 'ns.public', 'ns.special'], defaultNs: 'ns.common'},
+    preload: ['de', 'fr', 'it', 'dev'],
     resSetPath: 'locales/__lng__/new.__ns__.json',
     saveMissing: true,
     debug: true

@@ -227,8 +227,51 @@ function(Backbone, ns, _, $, i18n) {
 
                     // update flatten
                     var flat = self.flat[lng][ns].get(key);
-                    flat.set(value, value);
+                    if (!flat) {
+                        var lngs = self._toLanguages(lng);
 
+                        for (var i = 0, len = lngs.length; i < len; i++) {
+                            if (lngs[i] === lng) continue;
+
+                            var source = self.flat[lngs[i]][ns][key];
+                            var target = self.flat[lng][ns].get(key);
+
+                            if (!source || target) break;
+
+                            self.flat[lng][ns].push({
+                                id: source.id,
+                                key: source.get('key'),
+                                lng: lng,
+                                ns: ns,
+                                isArray: source.get('isArray'),
+                                fallback: {
+                                    value: source.get('value'),
+                                    lng: lngs[i],
+                                    isArray: source.get('isArray')
+                                }
+                            });
+                        }
+
+                        flat = self.flat[lng][ns].get(key);
+                        if (!flat) {
+                            var k = key.split('.').join(' .');
+                            self.flat[lng][ns].push({
+                                id: key,
+                                key: k,
+                                lng: lng,
+                                ns: ns,
+                                value: '',
+                                isArray: false,
+                                fallback: {
+                                    value: '',
+                                    lng: lng,
+                                    isArray: false
+                                }
+                            }); 
+                        }
+                    } else {
+                        flat.set('value', value);
+                    }
 
                     if (cb) cb(null);
                 },

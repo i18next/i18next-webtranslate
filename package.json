@@ -17,7 +17,7 @@
     , "handlebars": ">= 0.0.1"
     , "async": ">= 0.1.18"
     , "lodash": ">= 0.5.x"
-    , "i18next": ">= 1.4.1"
+    , "i18next": "https://github.com/jamuhl/i18next-node/tarball/master"
     }
   , "devDependencies": {}
   , "scripts": {}

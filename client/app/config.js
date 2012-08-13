@@ -12,6 +12,7 @@ require.config({
         i18next: '../assets/js/libs/i18next-1.4.1',
 
         jquery: '../assets/js/libs/jquery-1.7.2',
+        jquery_smoothscroll: '../assets/js/libs/jquery.smooth-scroll-1.4.4',
         underscore: '../assets/js/libs/lodash-0.3.2', // drop in replacement
         handlebars: "../assets/js/libs/handlebars-1.0.0.beta.6",
 
@@ -33,6 +34,8 @@ require.config({
         },
 
         chosen: ['jquery'],
+
+        jquery_smoothscroll: ['jquery'],
 
         underscore: {
             deps: [],

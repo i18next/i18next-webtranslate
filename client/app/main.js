@@ -55,12 +55,10 @@ function(ns, $, Backbone, i18next, data, resSync) {
 
     app.addAsyncInitializer(function(options, done) {
         i18next.init({
-            ns: { namespaces: ['ns.app', 'ns.common', 'ns.layout', 'ns.msg'], defaultNs: 'ns.app'},
             resGetPath: "locales/resources.json?lng=__lng__&ns=__ns__",
             dynamicLoad: true,
-            sendMissing: true,
-            useLocalStorage: false,
-            fallbackLng: 'de',
+            resStore: {},
+            fallbackLng: 'dev',
             debug: app.debug
         }, function(t) { 
             ns.t = t;
@@ -71,11 +69,11 @@ function(ns, $, Backbone, i18next, data, resSync) {
 
     app.addAsyncInitializer(function(options, done) {
         resSync.init({
-            languages: ['de-CH', 'fr', 'it'],
-            namespaces: ['ns.app', 'ns.common', 'ns.layout', 'ns.msg'],
+            languages: ['de-CH', 'fr', 'it', 'dev'],
+            namespaces: ['ns.app', 'ns.common', 'ns.layout', 'ns.msg', 'ns.special'],
             resGetPath: "locales/resources.json?lng=__lng__&ns=__ns__",
             resChangePath: 'locales/change/__lng__/__ns__',
-            fallbackLng: "de",
+            fallbackLng: "dev",
             dynamicLoad: true
         }, function() {
             done();
