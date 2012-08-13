@@ -8,7 +8,7 @@ require([
 
     // Modules
     "modules/data/appData",
-    "modules/translate/resourceLoader",
+    "modules/translate/resourceSync",
 
     // common
     "modules/common/common",
@@ -18,7 +18,7 @@ require([
     "modules/translate/resourceEditor"
 ],
 
-function(ns, $, Backbone, i18next, data, resLoader) {
+function(ns, $, Backbone, i18next, data, resSync) {
 
     // Shorthand the application namespace
     var app = ns.app;
@@ -70,10 +70,11 @@ function(ns, $, Backbone, i18next, data, resLoader) {
     });
 
     app.addAsyncInitializer(function(options, done) {
-        resLoader.init({
+        resSync.init({
             languages: ['de-CH', 'fr', 'it'],
             namespaces: ['ns.app', 'ns.common', 'ns.layout', 'ns.msg'],
             resGetPath: "locales/resources.json?lng=__lng__&ns=__ns__",
+            resChangePath: 'locales/change/__lng__/__ns__',
             fallbackLng: "de",
             dynamicLoad: true
         }, function() {

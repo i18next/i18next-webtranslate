@@ -12,6 +12,18 @@ function(Backbone, ns, _, $, i18n) {
       , Collections = ns.modules.data.Collections
       , Models = ns.modules.data.Models;
 
+    function applyReplacement(str, replacementHash, nestedKey) {
+        if (str.indexOf(i18n.options.interpolationPrefix) < 0) return str;
+
+        i18n.functions.each(replacementHash, function(key, value) {
+            if (typeof value === 'object') {
+                str = applyReplacement(str, value, key);
+            } else {
+                str = str.replace(new RegExp([i18n.options.interpolationPrefix, nestedKey ? nestedKey + '.' + key : key, i18n.options.interpolationSuffix].join(''), 'g'), value);
+            }
+        });
+        return str;
+    }
 
     // Create a new module
     var webTranslator = {};
@@ -43,6 +55,8 @@ function(Backbone, ns, _, $, i18n) {
 
             this.options.languages.sort();
             this.options.namespaces.sort();
+
+            this.i18nOptions = _.clone(i18n.options);
 
             this.loadResources(this.options, function() {
                 self.flatten(self.resStore, self.options);
@@ -99,7 +113,7 @@ function(Backbone, ns, _, $, i18n) {
 
                     if (typeof value === 'string') {
                         kv = { 
-                            id: key,
+                            id: key.replace(new RegExp(' ', 'g'), ''),
                             lng: lng,
                             ns: ns,
                             key: key,
@@ -112,7 +126,7 @@ function(Backbone, ns, _, $, i18n) {
                         appendTo.push(kv);
                     } else if (Object.prototype.toString.apply(value) === '[object Array]') {
                         kv = { 
-                            id: key,
+                            id: key.replace(new RegExp(' ', 'g'), ''),
                             lng: lng,
                             ns: ns,
                             key: key,
@@ -161,9 +175,10 @@ function(Backbone, ns, _, $, i18n) {
                             if (!tNS.get(res.id)) {
                                 tNS.push({
                                     id: res.id,
-                                    key: res.id,
+                                    key: res.get('key'),
                                     lng: lng,
                                     ns: ns,
+                                    isArray: res.get('isArray'),
                                     fallback: {
                                         value: res.get('value'),
                                         lng: lngs[i],
@@ -180,6 +195,50 @@ function(Backbone, ns, _, $, i18n) {
                 merge(lng, this._toLanguages(lng));
             }
 
+        },
+
+        update: function(lng, ns, key, value, cb) {
+            var self = this;
+
+            var payload = {};
+            payload[key] = value;
+
+            var url = applyReplacement(this.options.resChangePath, { lng: lng, ns: ns });
+
+            i18n.functions.ajax({
+                url: url,
+                type: i18n.options.sendType,
+                data: payload,
+                success: function(data, status, xhr) {
+                    i18n.functions.log('posted change key \'' + key + '\' to: ' + url);
+
+                    // update resStore
+                    var keys = key.split('.');
+                    var x = 0;
+                    var val = self.resStore[lng][ns];
+                    while (keys[x]) {
+                        if (x === keys.length - 1) {
+                            val = val[keys[x]] = value;
+                        } else {
+                            val = val[keys[x]] = val[keys[x]] || {};
+                        }
+                        x++;
+                    }
+
+                    // update flatten
+                    var flat = self.flat[lng][ns].get(key);
+                    flat.set(value, value);
+
+
+                    if (cb) cb(null);
+                },
+                error : function(xhr, status, error) {
+                    i18n.functions.log('failed change key \'' + key + '\' to: ' + url);
+                    if (cb) cb(error);
+                },
+                dataType: "json",
+                async : i18n.options.postAsync
+            });
         }
 
     });

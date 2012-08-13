@@ -4,14 +4,46 @@
 			.key
 				{{parseKey key }}
 		.span5
-			{{#if value }}
-			{{parseValue value }}
-			{{else}}
-			&nbsp;
-			{{/if}}
+			div.editor-wrapper(style="display:inline-block; position:relative;")
+				{{#if isArray}}
+				textarea.span5.editor(rows='5', disabled='disabled') {{value}}
+				{{else}}
+				input.span5.editor(type='text', value!='{{value}}', disabled='disabled')
+				{{/if}}
 
 		.span5
-			{{parseValue fallback.value }}
-			
-			.pull-right
-				span.badge.badge-success.fallbackBadge {{ fallback.lng }}
+			.testSection(style='display: none;')
+				h6 Options:
+				p (one Option per line, eg. count=0)
+				textarea.span5.i18nOptions(rows='5')
+				button.pull-right.btn.btn-warning.btn-mini.refresh
+					i.icon-refresh
+				.well.translated
+			.previewSection
+				{{parseValue fallback.value }}
+
+	.row-fluid
+		.span2 &nbsp;
+		.span5
+			.commands
+				.pull-right.editCommands(style='display: none;')
+					button.btn.btn-mini.cancel
+						i.icon-remove
+						| cancel
+					button.btn.btn-warning.btn-mini.save
+						i.icon-ok
+						| save
+				.pull-right
+					button.btn.btn-mini.edit
+						i.icon-edit
+						| edit
+
+		.span5
+			.commands
+				.pull-right
+					span.badge.badge-success.fallbackBadge {{ fallback.lng }}
+
+				.pull-right
+					button.btn.btn-mini.test
+						i.icon-check
+						| test

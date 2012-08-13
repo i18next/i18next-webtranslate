@@ -1,11 +1,20 @@
+.main-inner
+	min-height: 500px
+
 .tableheader
 	margin-bottom: 15px
+
+.commands
+	button, .badge
+		margin-left: 3px
 
 .resources
 
 	.resource
+		border-bottom: solid 1px $ultralightGray
 		border-left: solid 3px $green
-		margin: 0 0 10px
+		margin: 0 0 25px
+		padding: 5px 0
 	
 		&.isFallback
 			border-left: solid 3px $orange
@@ -22,6 +31,12 @@
 
 				&.toFallback
 					color: $red
+
+		textarea:disabled, input:disabled
+			cursor: pointer
+
+		.translated
+			margin-top: 30px
 
 
 @media (min-width: 980px)

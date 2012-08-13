@@ -1,0 +1,29 @@
+{
+    "auth": {
+        "login": {
+            "hint": {
+                "loginFailed": "Ameldig het ned funktioniert!",
+                "newUser": "D'registrierig hät voll klappet!",
+                "passwordReset": "Ein neus $t(ns.common:password) isch a $t(ns.common:email) geschickt worde!"
+            },
+            "login": "amelde",
+            "info": "Meld di mit dim $t(ns.common:userProfile) a:",
+            "title": "Anmelden"
+        },
+        "register": {
+            "terms": [
+                "I han d'",
+                "$t(ns.common:terms)",
+                "glese und stimmä zue."
+            ]
+        },
+        "passwordReset": {
+            "hint": {
+                "emailError": "Bim sende vo d'$t(ns.common:email) isch en Fehler passiert!",
+                "noUser": "Kein Benutzer gefunde!"
+            },
+            "info": "Geben Sie Ihr t(ns.common:username) oder Ihre $t(ns.common:email) an:",
+            "title": "$t(ns.common:password) zurücksetze"
+        }
+    }
+}
