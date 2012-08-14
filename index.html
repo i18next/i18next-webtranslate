@@ -31,6 +31,16 @@
   <script data-main="app/config" src="assets/js/libs/require.js"></script>
   <script language="javascipt" type="text/javascript">
     i18nextWT_onready = function(wt) {
+
+      wt.addResourceSet('en', {
+        key1: 'keyone'
+      });
+
+      wt.addResourceSet('de', {
+        key2: 'keytwo',
+        key3: 'keythree'
+      });
+      
       wt.config(
         {
           fallbackLng: 'dev',

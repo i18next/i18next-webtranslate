@@ -86,7 +86,15 @@ function(ns, $, Backbone, i18next, data, resSync) {
     if (window.i18nextWT_onready) {
         window.i18nextWT_onready({
             addResourceSet: function(lng, res) {
+                app.languages = app.languages || [];
+                if (app.languages.indexOf(lng) < 0) app.languages.push(lng);
 
+                var resSet = {};
+                resSet[lng] = {};
+                resSet[lng].translation = res;
+
+                app.resStore = app.resStore || {};
+                _.extend(app.resStore, resSet);
             },
 
             config: function(i18nextOpts, i18nextWTOpts) {
