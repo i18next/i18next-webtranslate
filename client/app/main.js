@@ -30,7 +30,7 @@ function(ns, $, Backbone, i18next, data, resSync) {
 
     app.setLng = function(lng) {
         lng = lng.substring(0,2);
-        if (lng !== 'de' && lng !== 'fr' && lng !== 'it') lng = i18next.options.fallbackLng;
+        if (app.languages.indexOf(lng) < 0) lng = i18next.options.fallbackLng;
 
         i18next.setLng(lng, function() {
             if (app.header.currentView) app.header.currentView.render();
@@ -53,35 +53,6 @@ function(ns, $, Backbone, i18next, data, resSync) {
         if('placeholder' in test) $.support.placeholder = true;
     });
 
-
-
-
-
-    // removes tooltips when navigating with browser's history (back and forward)
-    // app.addInitializer(function(options) {
-    //     var hash;
-    //     setInterval(function() {
-    //         if (location.hash != hash) {
-    //             $('.tooltip').remove();
-    //             hash = location.hash;
-    //         }
-    //     }, 100);
-    // });
-
-    // Treat the jQuery ready function as the entry point to the application.
-    // Inside this function, kick-off all initialization, everything up to this
-    // point should be definitions.
-    // $(function() {
-    //     // Define your master router on the application namespace and trigger all
-    //     // navigation from this instance.
-    //     app.start(function() {
-    //         ns.modules.header.controller.standard();
-    //         ns.modules.footer.controller.standard();
-            
-    //         Backbone.history.start(/*{ pushState: true }*/);
-    //     });
-    // });
-
     // global callback
     if (window.i18nextWT_onready) {
         window.i18nextWT_onready({
@@ -98,7 +69,7 @@ function(ns, $, Backbone, i18next, data, resSync) {
             },
 
             config: function(i18nextOpts, i18nextWTOpts) {
-                _.extend(i18nextOpts, { resStore: {} });
+                _.extend(i18nextOpts, { resStore: app.resStore });
 
                 app.addAsyncInitializer(function(options, done) {
                     i18next.init(i18nextOpts, function(t) { 

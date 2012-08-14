@@ -14,8 +14,8 @@
 
 		.span5
 			.testSection(style='display: none;')
-				h6 Options:
-				p (one Option per line, eg. count=0)
+				h6 {{t "editor.resourceItem.options" }}:
+				p ({{t "editor.resourceItem.optionsDesc" }})
 				textarea.span5.i18nOptions(rows='5')
 				button.pull-right.btn.btn-warning.btn-mini.refresh
 					i.icon-refresh
@@ -34,24 +34,24 @@
 				.pull-right.editCommands(style='display: none;')
 					button.btn.btn-mini.cancel
 						i.icon-remove
-						| cancel
+						{{t "editor.cancel" }}
 					button.btn.btn-warning.btn-mini.save
 						i.icon-ok
-						| save
+						{{t "editor.save" }}
 				.pull-right.removeCommands(style='display: none;')
 					button.btn.btn-mini.cancelRemove
 						i.icon-remove
-						| cancel
+						{{t "editor.cancel" }}
 					button.btn.btn-warning.btn-mini.confirmRemove
 						i.icon-ok
-						| löschen
+						{{t "editor.delete" }}
 				.pull-right.mainCommands
 					button.btn.btn-mini.remove
 						i.icon-remove
-						| delete
+						{{t "editor.delete" }}
 					button.btn.btn-mini.edit
 						i.icon-edit
-						| edit
+						{{t "editor.edit" }}
 
 		.span5
 			.commands
@@ -61,4 +61,4 @@
 				.pull-right
 					button.btn.btn-mini.test
 						i.icon-check
-						| test
+						{{t "editor.test" }}

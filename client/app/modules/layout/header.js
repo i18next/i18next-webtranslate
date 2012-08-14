@@ -23,28 +23,25 @@ function(ns, Backbone, i18next) {
         tagName: 'div',
         template: 'header',
 
-        events: {
-            'click .setDE' : 'ui_setLngToDE',
-            'click .setFR' : 'ui_setLngToFR',
-            'click .setIT' : 'ui_setLngToIT'
-        },
+        onRender: function() {
+            var self = this;
 
-        ui_setLngToDE: function(e) {
-            e.preventDefault();
+            function append(lng) {
+                var eleStr = '<li><a href="javascript:;">' + 
+                    ns.t('layout.header.language', {lng: lng}) + 
+                    '</a></li>';
 
-            app.setLng('de');
-        },
-        
-        ui_setLngToFR: function(e) {
-            e.preventDefault();
+                var ele = $(eleStr);
+                ele.on('click', function(e) {
+                    e.preventDefault();
+                    app.setLng(lng);
+                });
+                self.$('.languages').append(ele);                  
+            }
 
-            app.setLng('fr');
-        },
-
-        ui_setLngToIT: function(e) {
-            e.preventDefault();
-
-            app.setLng('it');
+            for (var i = 0, len = app.languages.length; i < len; i++) {
+                append(app.languages[i]);
+            }
         }
     });
 

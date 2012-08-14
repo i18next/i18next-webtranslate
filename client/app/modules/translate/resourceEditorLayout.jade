@@ -5,7 +5,7 @@
                 .row-fluid
                     .span6
                         form.form-inline
-                            h6 select:
+                            h6 {{t "editor.choose" }}:
                             .field.control-group
                                 select#languages.span5(name='language', data-placeholder='language')
                             .field.control-group
@@ -13,23 +13,23 @@
 
                     .span6
                         form.form-inline
-                            h6 add key:
+                            h6 {{t "editor.addKey" }}:
                             .field.control-group
                                 input#addKey.span5(type='text')
 
-                            button#add.btn.btn-primary add
+                            button#add.btn.btn-primary {{t "editor.add" }}
 
     .row
         .span12
             .row-fluid.tableheader
                 .span2
-                    h4 key
+                    h4 {{t "editor.th.key" }}
 
                 .span5
-                    h4 specific value
+                    h4 {{t "editor.th.specificValue" }}
 
                 .span5
-                    h4 displayed value
+                    h4 {{t "editor.th.displayedValue" }}
 
     .row
         .span12
