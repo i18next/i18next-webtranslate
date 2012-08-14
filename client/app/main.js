@@ -53,31 +53,9 @@ function(ns, $, Backbone, i18next, data, resSync) {
         if('placeholder' in test) $.support.placeholder = true;
     });
 
-    app.addAsyncInitializer(function(options, done) {
-        i18next.init({
-            resStore: {},
-            fallbackLng: 'dev',
-            debug: app.debug
-        }, function(t) { 
-            ns.t = t;
-            app.setLng(i18next.lng());
-            done();
-        });
-    });
 
-    app.addAsyncInitializer(function(options, done) {
-        resSync.init({
-            languages: ['de-CH', 'fr', 'it', 'dev'],
-            namespaces: ['ns.app', 'ns.common', 'ns.layout', 'ns.msg', 'ns.special'],
-            resGetPath: "locales/resources.json?lng=__lng__&ns=__ns__",
-            resChangePath: 'locales/change/__lng__/__ns__',
-            resRemovePath: 'locales/remove/__lng__/__ns__',
-            fallbackLng: "dev",
-            dynamicLoad: true
-        }, function() {
-            done();
-        });
-    });
+
+
 
     // removes tooltips when navigating with browser's history (back and forward)
     // app.addInitializer(function(options) {
@@ -112,6 +90,21 @@ function(ns, $, Backbone, i18next, data, resSync) {
             },
 
             config: function(i18nextOpts, i18nextWTOpts) {
+                _.extend(i18nextOpts, { resStore: {} });
+
+                app.addAsyncInitializer(function(options, done) {
+                    i18next.init(i18nextOpts, function(t) { 
+                        ns.t = t;
+                        app.setLng(i18next.lng());
+                        done();
+                    });
+                });
+
+                app.addAsyncInitializer(function(options, done) {
+                    resSync.init(i18nextWTOpts, function() {
+                        done();
+                    });
+                });
 
             },
 
