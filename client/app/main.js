@@ -55,8 +55,6 @@ function(ns, $, Backbone, i18next, data, resSync) {
 
     app.addAsyncInitializer(function(options, done) {
         i18next.init({
-            resGetPath: "locales/resources.json?lng=__lng__&ns=__ns__",
-            dynamicLoad: true,
             resStore: {},
             fallbackLng: 'dev',
             debug: app.debug
@@ -73,6 +71,7 @@ function(ns, $, Backbone, i18next, data, resSync) {
             namespaces: ['ns.app', 'ns.common', 'ns.layout', 'ns.msg', 'ns.special'],
             resGetPath: "locales/resources.json?lng=__lng__&ns=__ns__",
             resChangePath: 'locales/change/__lng__/__ns__',
+            resRemovePath: 'locales/remove/__lng__/__ns__',
             fallbackLng: "dev",
             dynamicLoad: true
         }, function() {
@@ -94,15 +93,37 @@ function(ns, $, Backbone, i18next, data, resSync) {
     // Treat the jQuery ready function as the entry point to the application.
     // Inside this function, kick-off all initialization, everything up to this
     // point should be definitions.
-    $(function() {
-        // Define your master router on the application namespace and trigger all
-        // navigation from this instance.
-        app.start(function() {
-            ns.modules.header.controller.standard();
-            ns.modules.footer.controller.standard();
+    // $(function() {
+    //     // Define your master router on the application namespace and trigger all
+    //     // navigation from this instance.
+    //     app.start(function() {
+    //         ns.modules.header.controller.standard();
+    //         ns.modules.footer.controller.standard();
             
-            Backbone.history.start(/*{ pushState: true }*/);
-        });
-    });
+    //         Backbone.history.start(/*{ pushState: true }*/);
+    //     });
+    // });
+
+    // global callback
+    if (window.i18nextWT_onready) {
+        window.i18nextWT_onready({
+            addResourceSet: function(lng, res) {
+
+            },
+
+            config: function(i18nextOpts, i18nextWTOpts) {
+
+            },
+
+            start: function() {
+                app.start(function() {
+                    ns.modules.header.controller.standard();
+                    ns.modules.footer.controller.standard();
+                    
+                    Backbone.history.start(/*{ pushState: true }*/);
+                });
+            }
+        }); 
+    }
 
 });

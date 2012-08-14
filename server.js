@@ -38,7 +38,8 @@ i18n.registerAppHelper(app)
     .serveClientScript(app)
     .serveDynamicResources(app)
     .serveMissingKeyRoute(app)
-    .serveChangeKeyRoute(app);
+    .serveChangeKeyRoute(app)
+    .serveRemoveKeyRoute(app);
 
  var http = require('http')
    , server = http.createServer(app);

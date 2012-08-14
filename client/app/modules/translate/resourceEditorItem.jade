@@ -38,7 +38,17 @@
 					button.btn.btn-warning.btn-mini.save
 						i.icon-ok
 						| save
-				.pull-right
+				.pull-right.removeCommands(style='display: none;')
+					button.btn.btn-mini.cancelRemove
+						i.icon-remove
+						| cancel
+					button.btn.btn-warning.btn-mini.confirmRemove
+						i.icon-ok
+						| löschen
+				.pull-right.mainCommands
+					button.btn.btn-mini.remove
+						i.icon-remove
+						| delete
 					button.btn.btn-mini.edit
 						i.icon-edit
 						| edit

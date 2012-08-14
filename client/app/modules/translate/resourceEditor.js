@@ -43,7 +43,6 @@ function(Backbone, ns, resSync, i18n) {
         },
 
         events: {
-            'click #load': 'ui_load',
             'click #add': 'ui_add'
         },
 
@@ -110,15 +109,22 @@ function(Backbone, ns, resSync, i18n) {
                 opt = data.languages[i];
                 item = '<option value="' + opt + '">' + opt + '</option> ';
                 this.$('#languages').append($(item));
-            }
+            }     
 
             for (i = 0, len = data.namespaces.length; i < len; i++) {
                 opt = data.namespaces[i];
                 item = '<option value="' + opt + '">' + opt + '</option> ';
                 this.$('#namespaces').append($(item));
             }
-
+            
             this.ui_load();
+        },
+
+        onShow: function() {
+            var self = this;
+
+            this.$('#languages').chosen().change(function() { self.ui_load(); });
+            this.$('#namespaces').chosen().change(function() { self.ui_load(); });
         }
             
     });
@@ -139,6 +145,9 @@ function(Backbone, ns, resSync, i18n) {
             'click .editor-wrapper': 'ui_edit',
             'click .cancel': 'ui_cancelEdit',
             'click .save': 'ui_save',
+            'click .remove': 'ui_toggleRemove',
+            'click .cancelRemove': 'ui_toggleRemove',
+            'click .confirmRemove': 'ui_confirmRemove',
             'click .test': 'ui_toggleTest',
             'click .refresh': 'ui_refreshTest',
             'click .multiline': 'ui_toggleArray',
@@ -154,7 +163,7 @@ function(Backbone, ns, resSync, i18n) {
 
             this.$('.editor').removeAttr('disabled');
             this.$('.editor').focus();
-            this.$('.edit').hide();
+            this.$('.mainCommands').hide();
             this.$('.editCommands').show();
         },
 
@@ -162,7 +171,7 @@ function(Backbone, ns, resSync, i18n) {
             if (e) e.preventDefault();
 
             this.$('.editor').attr('disabled', 'disabled');
-            this.$('.edit').show();
+            this.$('.mainCommands').show();
             this.$('.editCommands').hide();
 
 
@@ -197,6 +206,36 @@ function(Backbone, ns, resSync, i18n) {
             );
         },
 
+        ui_toggleRemove: function(e) {
+            if (e) e.preventDefault();
+
+            if (this.removing) {
+                this.removing = false;
+                this.$('.removeCommands').hide();
+                this.$('.mainCommands').show();
+                this.resetI18n(function() {});
+            } else {
+                this.removing = true;
+                this.$('.removeCommands').show();
+                this.$('.mainCommands').hide();
+            }
+        },
+
+        ui_confirmRemove: function(e) {
+            if (e) e.preventDefault();
+
+            var self = this;
+            this.$('.remove').attr('disabled', 'disabled');
+
+            resSync.remove(
+                this.model.get('lng'),
+                this.model.get('ns'),
+                this.model.id,
+                '',
+                function(err) { }
+            );
+        },
+
         ui_toggleTest: function(e) {
             e.preventDefault();
 
@@ -223,7 +262,7 @@ function(Backbone, ns, resSync, i18n) {
             
             var args = self.$('.i18nOptions').val();
             if (args.length > 0) {
-                args = args.replace(new RegExp(' ', 'g'), '').split(/\n|\r/);
+                args = args.replace(new RegExp(' = ', 'g'), '=').split(/\n|\r/);
                 for (var i = 0, len = args.length; i < len; i++) {
                     var split = args[i].split('=');
                     if ($.isNumeric(split[1])) {

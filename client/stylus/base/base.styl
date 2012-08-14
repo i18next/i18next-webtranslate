@@ -1,44 +1,62 @@
 .main-inner
-	min-height: 500px
+    min-height: 500px
 
 .tableheader
-	margin-bottom: 15px
+    margin-bottom: 15px
 
 .commands
-	button, .badge
-		margin-left: 3px
+    button, .badge
+        margin-left: 3px
 
 .resources
 
-	.resource
-		border-bottom: solid 1px $ultralightGray
-		border-left: solid 3px $green
-		margin: 0 0 25px
-		padding: 5px 0
-	
-		&.isFallback
-			border-left: solid 3px $orange
+    .resource
+        border-bottom: solid 1px $ultralightGray
+        border-left: solid 3px $green
+        margin: 0 0 25px
+        padding: 5px 0
+    
+        &.isFallback
+            border-left: solid 3px $orange
 
-			&.toFallback
-				border-left: solid 3px $red
+            &.toFallback
+                border-left: solid 3px $red
 
-		.key
-			color: $green
-			padding: 0 5px
-	
-			&.isFallback
-				color: $orange
+        .key
+            color: $green
+            padding: 0 5px
+    
+            &.isFallback
+                color: $orange
 
-				&.toFallback
-					color: $red
+                &.toFallback
+                    color: $red
 
-		textarea:disabled, input:disabled
-			cursor: pointer
+        textarea:disabled, input:disabled
+            cursor: pointer
 
-		.translated
-			margin-top: 30px
+        .translated
+            margin-top: 30px
+
+.footer 
+    margin-top: 0
+    border-top: 1px solid #292929
+
+.footer-inner 
+    padding: 15px 0   
+    font-size: 12px
+    background: #111
+    color: #999
+    text-align: right
+
+.footer a 
+    color: #999
+
+.footer a:hover 
+    color: #FFF
+    text-decoration: none
 
 
 @media (min-width: 980px)
-	body
-		margin-top: 60px
+    body
+        margin-top: 60px

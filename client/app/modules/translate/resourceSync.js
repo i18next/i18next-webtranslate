@@ -31,7 +31,8 @@ function(Backbone, ns, _, $, i18n) {
     var defaults = {
         languages: ['dev'],
         namespaces: ['translation'],
-        resUpdatePath: 'locales/change/__lng__/__ns__'
+        resUpdatePath: 'locales/change/__lng__/__ns__',
+        resRemovePath: 'locales/remove/__lng__/__ns__'
     };
 
     _.extend(webTranslator, {
@@ -172,7 +173,8 @@ function(Backbone, ns, _, $, i18n) {
                         var tNS = target[ns] || new Collections.Resources();
 
                         sNS.each(function(res) {
-                            if (!tNS.get(res.id)) {
+                            if (!tNS.get(res.id) && 
+                                res.get('fallback').lng === res.get('lng')) {
                                 tNS.push({
                                     id: res.id,
                                     key: res.get('key'),
@@ -277,6 +279,49 @@ function(Backbone, ns, _, $, i18n) {
                 },
                 error : function(xhr, status, error) {
                     i18n.functions.log('failed change key \'' + key + '\' to: ' + url);
+                    if (cb) cb(error);
+                },
+                dataType: "json",
+                async : i18n.options.postAsync
+            });
+        },
+
+        remove: function(lng, ns, key, value, cb) {
+            var self = this;
+
+            var payload = {};
+            payload[key] = value;
+
+            var url = applyReplacement(this.options.resRemovePath, { lng: lng, ns: ns });
+
+            i18n.functions.ajax({
+                url: url,
+                type: i18n.options.sendType,
+                data: payload,
+                success: function(data, status, xhr) {
+                    i18n.functions.log('posted remove key \'' + key + '\' to: ' + url);
+
+                    // update resStore
+                    var keys = key.split('.');
+                    var x = 0;
+                    var val = self.resStore[lng][ns];
+                    while (keys[x]) {
+                        if (x === keys.length - 1) {
+                            delete val[keys[x]];
+                        } else {
+                            val = val[keys[x]] = val[keys[x]] || {};
+                        }
+                        x++;
+                    }
+
+                    // update flatten
+                    var flat = self.flat[lng][ns].get(key);
+                    flat.destroy();
+
+                    if (cb) cb(null);
+                },
+                error : function(xhr, status, error) {
+                    i18n.functions.log('failed remove key \'' + key + '\' to: ' + url);
                     if (cb) cb(error);
                 },
                 dataType: "json",

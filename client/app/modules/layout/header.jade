@@ -14,17 +14,20 @@
             // Everything you want hidden at 940px or less, place within here
             .nav-collapse
 
-                ul.nav.nav-lng.pull-right
-                    li.setDE: a(href='javascript:;') de
-                    li.setFR: a(href='javascript:;') fr
-                    li.setIT: a(href='javascript:;') it
+                ul.nav.pull-right
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown')
+                            i.large.icon-cog
+                            b.caret
+
+                        ul.dropdown-menu
+                                li.nav-header Change language:
+                                li.setDE: a(href='javascript:;') deutsch
+                                li.setFR: a(href='javascript:;') français
+                                li.setIT: a(href='javascript:;') italian
 
                 ul.nav.pull-right
                     li
-                        a(href='#register')
-                            | registrieren
-              
-                    li
-                        a(href='/')
-                            i.icon-chevron-left
-                            | zurück
+                        a(href='http://jamuhl.github.com/i18next/pages/doc_features.html', target='_new')
+                            i.icon-book
+                            | i18next - doc
