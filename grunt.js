@@ -91,7 +91,7 @@ module.exports = function(grunt) {
     // also minifies all the CSS as well.  This is named index.css, because we
     // only want to load one stylesheet in index.html.
     mincss: {
-      "client/dist/release/index.css": [
+      "client/dist/release/i18nextWT.css": [
         "client/assets/css/bootstrap-2.0.2.css",
         "client/assets/css/bootstrap-responsive-2.0.2.css",
         "client/assets/css/font-awesome-2.0.css",
@@ -102,9 +102,49 @@ module.exports = function(grunt) {
 
     // Takes the built require.js file and minifies it for filesize benefits.
     min: {
-      "client/dist/release/require.js": [
+      "client/dist/release/i18nextWT.js": [
         "client/dist/debug/require.js"
       ]
+    },
+
+    copy: {
+      assets: {
+        options: { basePath: "client/assets" },
+        files: {
+          "client/dist/release/assets": ["client/assets/font/**/*", "client/assets/img/**/*"]
+        }
+      },
+      css: {
+        options: { basePath: "client/dist/release" },
+        files: {
+          "client/dist/release/assets/css": "client/dist/release/i18nextWT.css"
+        }
+      },
+      js: {
+        options: { basePath: "client/dist/release" },
+        files: {
+          "client/dist/release/assets/js": "client/dist/release/i18nextWT.js"
+        }
+      },
+      files: {
+        options: { basePath: "client/assets" },
+        files: {
+          "client/dist/release/assets": ["client/assets/index.html", "client/assets/favicon.ico"]
+        }
+      }
+    },
+
+    compress: {
+      zip: {
+        options: {
+          mode: "zip",
+          basePath: "client/dist/release/assets/",
+          level: 1
+        },
+        files: {
+          "client/dist/release/i18nextWT-0.0.1.zip": "client/dist/release/assets/**/*"
+        }
+      }
     },
 
     // Running the server without specifying an action will run the defaults,
@@ -204,6 +244,6 @@ module.exports = function(grunt) {
 
   // The release task will run the debug tasks and then minify the
   // dist/debug/require.js file and CSS files.
-  grunt.registerTask("release", "default min mincss");
+  grunt.registerTask("release", "default min mincss copy compress");
 
 };

@@ -24,6 +24,10 @@ app.configure(function() {
     app.use('/app', express.static('client/app'));
     app.use('/assets', express.static('client/assets'));
     app.use('/app/templates', express.static('client/assets/templates'));
+
+    // for release 
+    app.use('/release', express.static('client/dist/release/assets'));
+    app.use('/', express.static('client/dist/release/assets'));
 });
 
 app.get("/", function(req, res) {
