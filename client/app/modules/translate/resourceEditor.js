@@ -43,8 +43,15 @@ function(Backbone, ns, resSync, i18n) {
         },
 
         events: {
-            'click #add': 'ui_add'
+            'click #add': 'ui_add',
+            'keyup .filter': 'ui_filter'
         },
+
+        ui_filter: _.debounce(function(e) {
+            //e.preventDefault();
+
+            app.vent.trigger('filter', this.$('.filter').val());
+        }, 250),
 
         ui_load: function(e) {
             if (e) e.preventDefault();
@@ -134,10 +141,8 @@ function(Backbone, ns, resSync, i18n) {
         template: 'resourceEditorItem',
 
         initialize: function(options) {
-            // if (this.model && this.model.get('children')) {
-            //     this.bindTo(this.model.get('children'), 'add', this.render, this);
-            //     this.bindTo(this.model.get('children'), 'remove', this.render, this);
-            // }
+            this.isHidden = false;
+            this.bindTo(app.vent, 'filter', this.filter, this);
         },
 
         events: {
@@ -152,6 +157,19 @@ function(Backbone, ns, resSync, i18n) {
             'click .refresh': 'ui_refreshTest',
             'click .multiline': 'ui_toggleArray',
             'click .singleline': 'ui_toggleArray'
+        },
+
+        filter: function(token) {
+            if (token === '' && this.isHidden) {
+                this.$el.show();
+                this.isHidden = false;
+            } else if (this.model.id.indexOf(token) !== 0 && !this.isHidden) {
+                this.$el.hide();
+                this.isHidden = true;
+            } else if (this.model.id.indexOf(token) === 0 && this.isHidden) {
+                this.$el.show();
+                this.isHidden = false;
+            }
         },
 
         ui_edit: function(e) {

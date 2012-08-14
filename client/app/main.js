@@ -46,6 +46,7 @@ function(ns, $, Backbone, i18next, data, resSync) {
                     cancel: 'cancel',
                     save: 'save',
                     test: 'test',
+                    filter: 'filter',
                     th: {
                         key: 'key',
                             specificValue: 'specific value',
@@ -75,6 +76,7 @@ function(ns, $, Backbone, i18next, data, resSync) {
                     cancel: 'abbrechen',
                     save: 'speichern',
                     test: 'testen',
+                    filter: 'filtern',
                     th: {
                         key: 'Schlüssel',
                         specificValue: 'spezifischer Wert',
