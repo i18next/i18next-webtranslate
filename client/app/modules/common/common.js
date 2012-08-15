@@ -4,8 +4,7 @@ define([
 ],
 
 function(Backbone, ns) {
-	var app = ns.app
-      , persistedMembers = ['username', 'id'];
+	var app = ns.app;
 
     // Create a new module
     var module = ns.module({ name: 'common', append: true, utils: {} });

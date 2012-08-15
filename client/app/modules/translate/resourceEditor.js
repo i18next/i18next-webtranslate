@@ -346,16 +346,16 @@ function(Backbone, ns, resSync, i18n) {
             if (fallbackLng !== this.model.get('lng')) {
                 this.$('.resource').addClass('isFallback');
                 this.$('.key').addClass('isFallback');
-                this.$('.fallbackBadge').removeClass('badge-success');
-                this.$('.fallbackBadge').addClass('badge-warning');
+                this.$('.fallbackBadge').removeClass('badge-success')
+                    .addClass('badge-warning');
             }
             if (fallbackLng === resSync.options.fallbackLng &&
                 this.model.get('lng').indexOf(resSync.options.fallbackLng) < 0) {
                 this.$('.resource').addClass('toFallback');
                 this.$('.key').addClass('toFallback');
-                 this.$('.fallbackBadge').removeClass('badge-success');
-                this.$('.fallbackBadge').removeClass('badge-warning');
-                this.$('.fallbackBadge').addClass('badge-error');
+                this.$('.fallbackBadge').removeClass('badge-success')
+                    .removeClass('badge-warning')
+                    .addClass('badge-error');
             }
 
             if (this.model.get('isArray')) {
@@ -364,8 +364,6 @@ function(Backbone, ns, resSync, i18n) {
                 this.$('.singleline').hide();
             }
         }
-
-        // todo on close reset i18n if dirty
     });
 
     module.Views.Resources = ns.CollectionView.extend({

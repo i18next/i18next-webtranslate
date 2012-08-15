@@ -17,7 +17,10 @@
         padding: 5px 0
     
         &.isFallback
-            border-left: solid 3px $orange
+            border-left: solid 3px lighten($green, 20)
+
+            .badge-warning
+                background: lighten($green, 20)
 
             &.toFallback
                 border-left: solid 3px $red
@@ -27,7 +30,7 @@
             padding: 0 5px
     
             &.isFallback
-                color: $orange
+                color: lighten($green, 10)
 
                 &.toFallback
                     color: $red
