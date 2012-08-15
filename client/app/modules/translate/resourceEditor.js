@@ -322,7 +322,7 @@ function(Backbone, ns, resSync, i18n) {
 
             i18n.init(resSync.i18nOptions, function(t) {
                 resSync.i18nDirty = false;
-                cb(t);
+                if (cb) cb(t);
             });
         },
 
@@ -363,6 +363,12 @@ function(Backbone, ns, resSync, i18n) {
             } else {
                 this.$('.singleline').hide();
             }
+        },
+
+        onClose: function() {
+            if (resSync.i18nDirty) {
+                this.resetI18n();
+            } 
         }
     });
 

@@ -1,0 +1,9 @@
+{
+    "auth": {
+        "login": {
+            "hint": {
+                "loginFailed": "Die Anmeldung ist fehlgeschlagen!"
+            }
+        }
+    }
+}
