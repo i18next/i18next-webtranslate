@@ -5,6 +5,7 @@ require([
     "jquery",
     "backbone",
     "i18next",
+    "./resources",
 
     // Modules
     "modules/data/appData",
@@ -18,7 +19,7 @@ require([
     "modules/translate/resourceEditor"
 ],
 
-function(ns, $, Backbone, i18next, data, resSync) {
+function(ns, $, Backbone, i18next, resources, data, resSync) {
 
     // Shorthand the application namespace
     var app = ns.app;
@@ -29,67 +30,7 @@ function(ns, $, Backbone, i18next, data, resSync) {
     app.store = new Backbone.Model();
 
     app.languages = ['en', 'de'];
-    app.resStore = {
-        en: {
-            translation: {
-                layout: {
-                    header: {
-                        language: 'english'
-                    }
-                },
-                editor: {
-                    choose: 'select',
-                    addKey: 'add Key',
-                    add: 'add',
-                    'delete': 'delete',
-                    edit: 'edit',
-                    cancel: 'cancel',
-                    save: 'save',
-                    test: 'test',
-                    filter: 'filter',
-                    th: {
-                        key: 'key',
-                            specificValue: 'specific value',
-                            displayedValue: 'displayed value'
-                    },
-                    resourceItem: {
-                        options: 'options',
-                        optionsDesc: 'one option per line, eg. count=0'
-                    }
-                }
-            }
-        },
-
-        de: {
-            translation: {
-                layout: {
-                    header: {
-                        language: 'deutsch'
-                    }
-                },
-                editor: {
-                    choose: 'Wählen',
-                    addKey: 'Schlüssel hinzufügen',
-                    add: 'hinzufügen',
-                    'delete': 'löschen',
-                    edit: 'ändern',
-                    cancel: 'abbrechen',
-                    save: 'speichern',
-                    test: 'testen',
-                    filter: 'filtern',
-                    th: {
-                        key: 'Schlüssel',
-                        specificValue: 'spezifischer Wert',
-                        displayedValue: 'angezeigter Wert'
-                    },
-                    resourceItem: {
-                        options: 'Optionen',
-                        optionsDesc: 'Eine Option pro Zeile, bspw. count=0'
-                    }
-                }
-            }
-        }
-    };
+    app.resStore = resources;
 
     app.setLng = function(lng) {
         lng = lng.substring(0,2);
