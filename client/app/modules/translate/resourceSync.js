@@ -31,8 +31,14 @@ function(Backbone, ns, _, $, i18n) {
     var defaults = {
         languages: ['dev'],
         namespaces: ['translation'],
+        resGetPath: 'locales/__lng__/__ns__.json',
         resUpdatePath: 'locales/change/__lng__/__ns__',
-        resRemovePath: 'locales/remove/__lng__/__ns__'
+        resRemovePath: 'locales/remove/__lng__/__ns__',
+        fallbackLng: 'dev',
+        lowerCaseLng: false,
+        sendType: 'POST',
+        postAsync: 'true',
+        getAsync: 'true'
     };
 
     _.extend(webTranslator, {
@@ -70,7 +76,7 @@ function(Backbone, ns, _, $, i18n) {
             if (lng.indexOf('-') === 2 && lng.length === 5) {
                 var parts = lng.split('-');
 
-                lng = i18n.options.lowerCaseLng ? 
+                lng = this.options.lowerCaseLng ? 
                     parts[0].toLowerCase() +  '-' + parts[1].toLowerCase() :
                     parts[0].toLowerCase() +  '-' + parts[1].toUpperCase();
 
@@ -209,7 +215,7 @@ function(Backbone, ns, _, $, i18n) {
 
             i18n.functions.ajax({
                 url: url,
-                type: i18n.options.sendType,
+                type: this.options.sendType,
                 data: payload,
                 success: function(data, status, xhr) {
                     i18n.functions.log('posted change key \'' + key + '\' to: ' + url);
@@ -282,7 +288,7 @@ function(Backbone, ns, _, $, i18n) {
                     if (cb) cb(error);
                 },
                 dataType: "json",
-                async : i18n.options.postAsync
+                async : this.options.postAsync
             });
         },
 
@@ -296,7 +302,7 @@ function(Backbone, ns, _, $, i18n) {
 
             i18n.functions.ajax({
                 url: url,
-                type: i18n.options.sendType,
+                type: this.options.sendType,
                 data: payload,
                 success: function(data, status, xhr) {
                     i18n.functions.log('posted remove key \'' + key + '\' to: ' + url);
@@ -325,7 +331,7 @@ function(Backbone, ns, _, $, i18n) {
                     if (cb) cb(error);
                 },
                 dataType: "json",
-                async : i18n.options.postAsync
+                async : this.options.postAsync
             });
         }
 

@@ -5,7 +5,7 @@ require([
     "jquery",
     "backbone",
     "i18next",
-    "./resources",
+    "resources",
 
     // Modules
     "modules/data/appData",
@@ -72,8 +72,11 @@ function(ns, $, Backbone, i18next, resources, data, resSync) {
                 _.extend(app.resStore, resSet);
             },
 
-            config: function(i18nextOpts, i18nextWTOpts) {
-                _.extend(i18nextOpts, { resStore: app.resStore });
+            config: function(i18nextWTOpts) {
+                var i18nextOpts = { 
+                    resStore: app.resStore,
+                    fallbackLng: 'en'
+                };
 
                 app.addAsyncInitializer(function(options, done) {
                     i18next.init(i18nextOpts, function(t) { 
