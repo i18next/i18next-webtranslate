@@ -57,12 +57,26 @@ function(Backbone, ns, resSync, i18n) {
             if (e) e.preventDefault();
 
             var lng = this.$('#languages').val()
-              , ns = this.$('#namespaces').val();
+              , ns = this.$('#namespaces').val()
+              , compare = this.$('#compare-lng').val();
 
+            var compareItem = resSync.flat[compare][ns],
+                currentItem = resSync.flat[lng][ns];
+
+            if(currentItem.models.length > 0) {
+              var counter = currentItem.models.length, i = 0;
+              for(i = 0; i < counter; i++) {
+                if (compareItem.models[i] && compareItem.models[i].get('value')) {
+                  currentItem.models[i].set({'compare': compareItem.models[i].get('value')});
+                }
+              }
+            }
             var colView = new module.Views.Resources({
                 collection: resSync.flat[lng][ns],
+                comparelng: resSync.flat[compare][ns],
                 parent: this
             });
+            console.log(colView);
 
             this.resources.show(colView);
         },
@@ -116,6 +130,7 @@ function(Backbone, ns, resSync, i18n) {
                 opt = data.languages[i];
                 item = '<option value="' + opt + '">' + opt + '</option> ';
                 this.$('#languages').append($(item));
+                this.$('#compare-lng').append($(item));
             }     
 
             for (i = 0, len = data.namespaces.length; i < len; i++) {
@@ -132,6 +147,7 @@ function(Backbone, ns, resSync, i18n) {
 
             this.$('#languages').chosen().change(function() { self.ui_load(); });
             this.$('#namespaces').chosen().change(function() { self.ui_load(); });
+            this.$('#compare-lng').chosen().change(function() { self.ui_load(); });
         }
             
     });
