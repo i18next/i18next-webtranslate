@@ -64,10 +64,17 @@ function(Backbone, ns, resSync, i18n) {
                 currentItem = resSync.flat[lng][ns];
 
             if(currentItem.models.length > 0) {
-              var counter = currentItem.models.length, i = 0;
+              var counter = currentItem.models.length, 
+                  compareCounter = compareItem.models.length,
+                  i = 0,
+                  j = 0;
+
               for(i = 0; i < counter; i++) {
-                if (compareItem.models[i] && compareItem.models[i].get('value')) {
-                  currentItem.models[i].set({'compare': compareItem.models[i].get('value')});
+                for(j = 0; j < compareCounter; j++) {
+                  if (compareItem.models[j] && compareItem.models[j].get('key') == currentItem.models[i].get('key')) {
+                    currentItem.models[i].set({'compare': compareItem.models[i].get('value')});
+                    break;
+                  }
                 }
               }
             }
