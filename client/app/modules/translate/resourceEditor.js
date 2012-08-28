@@ -72,7 +72,7 @@ function(Backbone, ns, resSync, i18n) {
               for(i = 0; i < counter; i++) {
                 for(j = 0; j < compareCounter; j++) {
                   if (compareItem.models[j] && compareItem.models[j].get('key') == currentItem.models[i].get('key')) {
-                    currentItem.models[i].set({'compare': compareItem.models[i].get('value')});
+                    currentItem.models[i].set({'compare': compareItem.models[j].get('value')});
                     break;
                   }
                 }
@@ -179,7 +179,11 @@ function(Backbone, ns, resSync, i18n) {
             'click .test': 'ui_toggleTest',
             'click .refresh': 'ui_refreshTest',
             'click .multiline': 'ui_toggleArray',
-            'click .singleline': 'ui_toggleArray'
+            'click .singleline': 'ui_toggleArray',
+            'click .compareEdit': 'ui_compare_edit',
+            'click .compare-editor-wrapper': 'ui_compare_edit',
+            'click .compareCancel': 'ui_compare_cancelEdit',
+            'click .compareSave': 'ui_compare_save'
         },
 
         filter: function(token) {
@@ -392,6 +396,41 @@ function(Backbone, ns, resSync, i18n) {
             if (resSync.i18nDirty) {
                 this.resetI18n();
             } 
+        },
+
+        ui_compare_edit: function(e) {
+          e.preventDefault();
+
+          if (!this.$('.compare-editor').val()) {
+            this.$('.compare-editor').val(this.model.get('fallback').value);
+          }
+
+          this.$('.compare-editor').removeAttr('disabled');
+          this.$('.compare-editor').focus();
+          this.$('.compareMainCommands').hide();
+          this.$('.compareEditCommands').show();
+        },
+
+        ui_compare_cancelEdit: function(e, noReplace) {
+          if (e) e.preventDefault();
+
+          this.$('.compare-editor').attr('disabled', 'disabled');
+          this.$('.compareMainCommands').show();
+          this.$('.compareEditCommands').hide();
+
+          if (!noReplace) {
+            this.$('.compare-editor').val(this.model.get('value'));
+          }
+        },
+
+        ui_compare_save: function(e) {
+          if (e) e.preventDefault();
+
+          var self = this;
+          this.$('.compareEditCommands button').attr('disabled', 'disabled');
+
+          var raw = this.$('.compare-editor').val()
+            , array;
         }
     });
 

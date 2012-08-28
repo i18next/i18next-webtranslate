@@ -26,16 +26,25 @@
 
                             button#add.btn.btn-primary {{t "editor.add" }}
 
+                            h6 {{t "editor.download" }}:
+                            .field.control-group
+                                select#download.span5(name='download', data-placeholder='download')
+
+                            button#add.btn.btn-primary {{t "editor.download" }}
+
     .row
         .span12
             .row-fluid.tableheader
                 .span2
                     h4 {{t "editor.th.key" }}
 
-                .span5
+                .span4
                     h4 {{t "editor.th.specificValue" }}
 
-                .span5
+                .span3
+                    h4 {{t "editor.th.compareValue" }}
+
+                .span3
                     h4 {{t "editor.th.displayedValue" }}
 
     .row
