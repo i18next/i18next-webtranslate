@@ -30,6 +30,7 @@ function(Backbone, ns, resSync, i18n) {
         controller: module.controller
     });
     var router = new Router();
+    var compareLng = '';
 
     module.Views.Main = ns.Layout.extend({
         tagName: 'div',
@@ -57,10 +58,12 @@ function(Backbone, ns, resSync, i18n) {
             if (e) e.preventDefault();
 
             var lng = this.$('#languages').val()
-              , ns = this.$('#namespaces').val()
-              , compare = this.$('#compare-lng').val();
+              , ns = this.$('#namespaces').val();
 
-            var compareItem = resSync.flat[compare][ns],
+            compareLng = this.$('#compare-lng').val();
+
+            console.log(compareLng);
+            var compareItem = resSync.flat[compareLng][ns],
                 currentItem = resSync.flat[lng][ns];
 
             if(currentItem.models.length > 0) {
@@ -70,20 +73,23 @@ function(Backbone, ns, resSync, i18n) {
                   j = 0;
 
               for(i = 0; i < counter; i++) {
+                var checkCompare = false;
                 for(j = 0; j < compareCounter; j++) {
                   if (compareItem.models[j] && compareItem.models[j].get('key') == currentItem.models[i].get('key')) {
                     currentItem.models[i].set({'compare': compareItem.models[j].get('value')});
+                    checkCompare = true;
                     break;
                   }
+                }
+                if (!checkCompare) {
+                  currentItem.models[i].set({'compare': ''});
                 }
               }
             }
             var colView = new module.Views.Resources({
                 collection: resSync.flat[lng][ns],
-                comparelng: resSync.flat[compare][ns],
                 parent: this
             });
-            console.log(colView);
 
             this.resources.show(colView);
         },
@@ -402,7 +408,7 @@ function(Backbone, ns, resSync, i18n) {
           e.preventDefault();
 
           if (!this.$('.compare-editor').val()) {
-            this.$('.compare-editor').val(this.model.get('fallback').value);
+            //this.$('.compare-editor').val(this.model.get('fallback').value);
           }
 
           this.$('.compare-editor').removeAttr('disabled');
@@ -419,7 +425,7 @@ function(Backbone, ns, resSync, i18n) {
           this.$('.compareEditCommands').hide();
 
           if (!noReplace) {
-            this.$('.compare-editor').val(this.model.get('value'));
+            this.$('.compare-editor').val(this.model.get('compare'));
           }
         },
 
@@ -431,6 +437,25 @@ function(Backbone, ns, resSync, i18n) {
 
           var raw = this.$('.compare-editor').val()
             , array;
+
+          if (this.model.get('isArray')) {
+            array = raw.split('\n');
+          }
+
+          console.log(this.model);
+          console.log(this.model.get('compare'));
+          if (compareLng) {
+            resSync.update(
+              compareLng,
+              this.model.get('ns'),
+              this.model.id,
+              array || raw,
+              function(err) {
+                self.$('.compareEditCommands button').removeAttr('disabled');
+                self.ui_compare_cancelEdit(undefined, true);
+              }
+            );
+          }
         }
     });
 
