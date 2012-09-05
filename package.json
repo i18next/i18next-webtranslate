@@ -9,7 +9,10 @@
       , "npm": ">= 1.1.x"
     }
   , "dependencies": {
-      "express": ">= 3.0.x"
+      "grunt": "*"
+    , "grunt-contrib": ">=0.1.0"
+    , "requirejs": "2.0.6"
+    , "express": ">= 3.0.x"
     , "stylus": ">= 0.24.0"
     , "nib": ">= 0.3.2"
     , "jade": ">= 0.0.1"
@@ -18,7 +21,7 @@
     , "async": ">= 0.1.18"
     , "lodash": ">= 0.5.x"
     , "zipstream": ">=0.2.1"
-    , "i18next": "https://github.com/jamuhl/i18next-node/tarball/master"
+    , "i18next": ">=1.5.0"
     }
   , "devDependencies": {}
   , "scripts": {}

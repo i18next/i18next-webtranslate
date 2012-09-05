@@ -4,6 +4,9 @@
 //
 module.exports = function(grunt) {
 
+  grunt.loadNpmTasks('grunt-contrib');
+  grunt.loadTasks("buildtasks");
+
   grunt.initConfig({
 
     meta: {
@@ -228,8 +231,6 @@ module.exports = function(grunt) {
     }
 
   });
-
-  grunt.loadTasks('./buildtasks');
 
   // The default task will remove all contents inside the dist/ folder, lint
   // all your code, precompile all the underscore templates into
