@@ -8,10 +8,10 @@ For more information go [here](http://i18next.com/pages/ext_webtranslate.html)
 
 To build the solution:
 
-1) `npm install grunt -g`
-2) `grunt release`
+1. `npm install grunt -g`
+2. `grunt release`
 
 During development:
 
-1) `grunt server`
-2) `grunt watch` or `grunt debug`
+1. `grunt server`
+2. `grunt watch` or `grunt debug
