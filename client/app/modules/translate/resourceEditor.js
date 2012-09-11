@@ -30,6 +30,7 @@ function(Backbone, ns, resSync, i18n) {
         controller: module.controller
     });
     var router = new Router();
+    var compareLng = '';
 
     module.Views.Main = ns.Layout.extend({
         tagName: 'div',
@@ -59,6 +60,32 @@ function(Backbone, ns, resSync, i18n) {
             var lng = this.$('#languages').val()
               , ns = this.$('#namespaces').val();
 
+            compareLng = this.$('#compare-lng').val();
+
+            console.log(compareLng);
+            var compareItem = resSync.flat[compareLng][ns],
+                currentItem = resSync.flat[lng][ns];
+
+            if(currentItem.models.length > 0) {
+              var counter = currentItem.models.length, 
+                  compareCounter = compareItem.models.length,
+                  i = 0,
+                  j = 0;
+
+              for(i = 0; i < counter; i++) {
+                var checkCompare = false;
+                for(j = 0; j < compareCounter; j++) {
+                  if (compareItem.models[j] && compareItem.models[j].get('key') == currentItem.models[i].get('key')) {
+                    currentItem.models[i].set({'compare': compareItem.models[j].get('value')});
+                    checkCompare = true;
+                    break;
+                  }
+                }
+                if (!checkCompare) {
+                  currentItem.models[i].set({'compare': ''});
+                }
+              }
+            }
             var colView = new module.Views.Resources({
                 collection: resSync.flat[lng][ns],
                 parent: this
@@ -116,6 +143,7 @@ function(Backbone, ns, resSync, i18n) {
                 opt = data.languages[i];
                 item = '<option value="' + opt + '">' + opt + '</option> ';
                 this.$('#languages').append($(item));
+                this.$('#compare-lng').append($(item));
             }     
 
             for (i = 0, len = data.namespaces.length; i < len; i++) {
@@ -132,6 +160,7 @@ function(Backbone, ns, resSync, i18n) {
 
             this.$('#languages').chosen().change(function() { self.ui_load(); });
             this.$('#namespaces').chosen().change(function() { self.ui_load(); });
+            this.$('#compare-lng').chosen().change(function() { self.ui_load(); });
         }
             
     });
@@ -156,7 +185,11 @@ function(Backbone, ns, resSync, i18n) {
             'click .test': 'ui_toggleTest',
             'click .refresh': 'ui_refreshTest',
             'click .multiline': 'ui_toggleArray',
-            'click .singleline': 'ui_toggleArray'
+            'click .singleline': 'ui_toggleArray',
+            'click .compareEdit': 'ui_compare_edit',
+            'click .compare-editor-wrapper': 'ui_compare_edit',
+            'click .compareCancel': 'ui_compare_cancelEdit',
+            'click .compareSave': 'ui_compare_save'
         },
 
         filter: function(token) {
@@ -369,6 +402,60 @@ function(Backbone, ns, resSync, i18n) {
             if (resSync.i18nDirty) {
                 this.resetI18n();
             } 
+        },
+
+        ui_compare_edit: function(e) {
+          e.preventDefault();
+
+          if (!this.$('.compare-editor').val()) {
+            //this.$('.compare-editor').val(this.model.get('fallback').value);
+          }
+
+          this.$('.compare-editor').removeAttr('disabled');
+          this.$('.compare-editor').focus();
+          this.$('.compareMainCommands').hide();
+          this.$('.compareEditCommands').show();
+        },
+
+        ui_compare_cancelEdit: function(e, noReplace) {
+          if (e) e.preventDefault();
+
+          this.$('.compare-editor').attr('disabled', 'disabled');
+          this.$('.compareMainCommands').show();
+          this.$('.compareEditCommands').hide();
+
+          if (!noReplace) {
+            this.$('.compare-editor').val(this.model.get('compare'));
+          }
+        },
+
+        ui_compare_save: function(e) {
+          if (e) e.preventDefault();
+
+          var self = this;
+          this.$('.compareEditCommands button').attr('disabled', 'disabled');
+
+          var raw = this.$('.compare-editor').val()
+            , array;
+
+          if (this.model.get('isArray')) {
+            array = raw.split('\n');
+          }
+
+          console.log(this.model);
+          console.log(this.model.get('compare'));
+          if (compareLng) {
+            resSync.update(
+              compareLng,
+              this.model.get('ns'),
+              this.model.id,
+              array || raw,
+              function(err) {
+                self.$('.compareEditCommands button').removeAttr('disabled');
+                self.ui_compare_cancelEdit(undefined, true);
+              }
+            );
+          }
         }
     });
 

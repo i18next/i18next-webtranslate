@@ -4,19 +4,27 @@
 			a.scrollTo(style='display: none;')
 			.key
 				{{parseKey key }}
-		.span5
+		.span4
 			div.editor-wrapper(style="display:inline-block; position:relative;")
 				{{#if isArray}}
-				textarea.span5.editor(rows='5', disabled='disabled') {{value}}
+				textarea.span4.editor(rows='5', disabled='disabled') {{value}}
 				{{else}}
-				input.span5.editor(type='text', value!='{{value}}', disabled='disabled')
+				input.span4.editor(type='text', value!='{{value}}', disabled='disabled')
 				{{/if}}
 
-		.span5
+		.span3
+			div.compare-editor-wrapper(style="display:inline-block; position:relative;")
+				{{#if isArray}}
+				textarea.span3.compare-editor(rows='5', disabled='disabled') {{compare}}
+				{{else}}
+				input.span3.compare-editor(type='text', value!='{{compare}}', disabled='disabled')
+				{{/if}}
+
+		.span3
 			.testSection(style='display: none;')
 				h6 {{t "editor.resourceItem.options" }}:
 				p ({{t "editor.resourceItem.optionsDesc" }})
-				textarea.span5.i18nOptions(rows='5')
+				textarea.span3.i18nOptions(rows='5')
 				button.pull-right.btn.btn-warning.btn-mini.refresh
 					i.icon-refresh
 				.well.translated
@@ -25,7 +33,7 @@
 
 	.row-fluid
 		.span2 &nbsp;
-		.span5
+		.span4
 			.commands
 				button.btn.btn-mini.singleline
 					i.icon-minus
@@ -53,7 +61,34 @@
 						i.icon-edit
 						{{t "editor.edit" }}
 
-		.span5
+		.span3
+			.commands
+				button.btn.btn-mini.compareSingleline
+					i.icon-minus
+				button.btn.btn-mini.compareMultiline
+					i.icon-align-justify
+				.pull-right.compareEditCommands(style='display: none;')
+					button.btn.btn-mini.compareCancel
+						i.icon-remove
+						{{t "editor.cancel" }}
+					button.btn.btn-warning.btn-mini.compareSave
+						i.icon-ok
+						{{t "editor.save" }}
+				.pull-right.compareRemoveCommands(style='display: none;')
+					button.btn.btn-mini.compareCancelRemove
+						i.icon-remove
+						{{t "editor.cancel" }}
+					button.btn.btn-warning.btn-mini.compareConfirmRemove
+						i.icon-ok
+						{{t "editor.delete" }}
+				.pull-right.compareMainCommands
+					button.btn.btn-mini.compareRemove
+						i.icon-remove
+						{{t "editor.delete" }}
+					button.btn.btn-mini.compareEdit
+						i.icon-edit
+						{{t "editor.edit" }}
+		.span3
 			.commands
 				.pull-right
 					span.badge.badge-success.fallbackBadge {{ fallback.lng }}
@@ -62,3 +97,4 @@
 					button.btn.btn-mini.test
 						i.icon-check
 						{{t "editor.test" }}
+

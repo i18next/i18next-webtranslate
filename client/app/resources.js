@@ -24,12 +24,16 @@ function($, _) {
                     save: 'save',
                     test: 'test',
                     filterKeys: 'filter keys',
+                    compare: 'Compare other language',
+                    download: 'Download',
                     th: {
-                        key: 'key',
-                            specificValue: 'specific value',
-                            displayedValue: 'displayed value'
+                      key: 'key',
+                      specificValue: 'specific value',
+                      displayedValue: 'displayed value',
+                      compareValue: 'compare value'
                     },
                     resourceItem: {
+                        compare: 'compare',
                         options: 'options',
                         optionsDesc: 'one option per line, eg. count=0'
                     }
