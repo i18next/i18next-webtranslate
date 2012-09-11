@@ -65,6 +65,67 @@ function($, _) {
                     }
                 }
             }
+        },
+
+        it: {
+            translation: {
+                layout: {
+                    header: {
+                        language: 'italiano'
+                    }
+                },
+                editor: {
+                    choose: 'selezionare',
+                    addKey: 'aggiungere chiave',
+                    add: 'aggiungere',
+                    'delete': 'cancellare',
+                    edit: 'modificare',
+                    cancel: 'cancellare',
+                    save: 'memorizzare',
+                    test: 'provare',
+                    filterKeys: 'filtrare chiave',
+                    th: {
+                        key: 'chiave',
+                            specificValue: 'valore specificato',
+                            displayedValue: 'valore indicato'
+                    },
+                    resourceItem: {
+                        options: 'opzione',
+                        optionsDesc: 'un opzione per riga'
+                    }
+                }
+            }
+        },
+
+        fr: {
+            translation: {
+                layout: {
+                    header: {
+                        language: 'français'
+                    }
+                },
+                editor: {
+                    choose: 'seléctioner',
+                    addKey: 'ajouter clé',
+                    add: 'ajouter',
+                    'delete': 'supprimer',
+                    edit: 'modifier',
+                    cancel: 'annuller',
+                    save: 'mémoriser',
+                    test: 'tester',
+                    filterKeys: 'filtrer clé',
+                    th: {
+                        key: 'clé',
+                        specificValue: 'valeur spécifique',
+                        displayedValue: 'valeur indiqué'
+                    },
+                    resourceItem: {
+                        options: 'Option',
+                        optionsDesc: 'une option par ligne'
+                    }
+                }
+            }
         }
+
     };
 });

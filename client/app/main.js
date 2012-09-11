@@ -29,7 +29,7 @@ function(ns, $, Backbone, i18next, resources, data, resSync) {
 
     app.store = new Backbone.Model();
 
-    app.languages = ['en', 'de'];
+    app.languages = ['en', 'de', 'it', 'fr'];
     app.resStore = resources;
 
     app.setLng = function(lng) {
