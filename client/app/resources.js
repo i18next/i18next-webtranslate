@@ -24,8 +24,8 @@ function($, _) {
                     save: 'save',
                     test: 'test',
                     filterKeys: 'filter keys',
-                    compare: 'Compare other language',
-                    download: 'Download',
+                    compare: 'compare to',
+                    download: 'download',
                     th: {
                       key: 'key',
                       specificValue: 'specific value',
@@ -58,12 +58,16 @@ function($, _) {
                     save: 'speichern',
                     test: 'testen',
                     filterKeys: 'Schlüssel filtern',
+                    compare: 'Vergleichen mit',
+                    download: 'herunterladen',
                     th: {
                         key: 'Schlüssel',
                         specificValue: 'spezifischer Wert',
-                        displayedValue: 'angezeigter Wert'
+                        displayedValue: 'angezeigter Wert',
+                        compareValue: 'compare value'
                     },
                     resourceItem: {
+                        compare: 'vergleichen',
                         options: 'Optionen',
                         optionsDesc: 'Eine Option pro Zeile, bspw. count=0'
                     }
@@ -88,12 +92,16 @@ function($, _) {
                     save: 'memorizzare',
                     test: 'provare',
                     filterKeys: 'filtrare chiave',
+                    compare: 'cparagonare a',
+                    download: 'scaricare',
                     th: {
                         key: 'chiave',
-                            specificValue: 'valore specificato',
-                            displayedValue: 'valore indicato'
+                        specificValue: 'valore specificato',
+                        displayedValue: 'valore indicato',
+                        compareValue: 'compare value'
                     },
                     resourceItem: {
+                        compare: 'paragonare',
                         options: 'opzione',
                         optionsDesc: 'un opzione per riga'
                     }
@@ -118,12 +126,16 @@ function($, _) {
                     save: 'mémoriser',
                     test: 'tester',
                     filterKeys: 'filtrer clé',
+                    compare: 'comparer avec',
+                    download: 'télécharger',
                     th: {
                         key: 'clé',
                         specificValue: 'valeur spécifique',
-                        displayedValue: 'valeur indiqué'
+                        displayedValue: 'valeur indiqué',
+                        compareValue: 'compare value'
                     },
                     resourceItem: {
+                        compare: 'comparer',
                         options: 'Option',
                         optionsDesc: 'une option par ligne'
                     }

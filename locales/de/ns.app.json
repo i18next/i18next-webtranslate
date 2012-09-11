@@ -54,7 +54,7 @@
                 "<br />",
                 "Da die $t(ns.common:credits) nicht verfallen, müssen Sie sich keine Sorge um die richtige Anzahl machen.",
                 "</p>"
-            ] 
+            ]
         }
     },
     "organisation": {
@@ -66,7 +66,7 @@
         "archive": {
             "archivedChildren": "Ehemalige $t(ns.common:children)"
         },
-        "openPaymentOver" : "(ausstehende Zahlung über CHF __openCosts__.-)",
+        "openPaymentOver": "(ausstehende Zahlung über CHF __openCosts__.-)",
         "addChild": "$t(ns.common:child) $t(ns.common:add)",
         "hintMessageChild": [
             "<p>",
@@ -236,4 +236,4 @@
             "klicken."
         ]
     }
-}  
+}

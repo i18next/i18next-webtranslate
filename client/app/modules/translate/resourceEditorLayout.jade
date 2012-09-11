@@ -26,11 +26,11 @@
 
                             button#add.btn.btn-primary {{t "editor.add" }}
 
-                            h6 {{t "editor.download" }}:
-                            .field.control-group
-                                select#download.span5(name='download', data-placeholder='download')
+                            //- h6 {{t "editor.download" }}:
+                            //- .field.control-group
+                            //-     select#download.span5(name='download', data-placeholder='download')
 
-                            button#add.btn.btn-primary {{t "editor.download" }}
+                            //- button#add.btn.btn-primary {{t "editor.download" }}
 
     .row
         .span12
@@ -38,14 +38,11 @@
                 .span2
                     h4 {{t "editor.th.key" }}
 
-                .span4
+                .span5
                     h4 {{t "editor.th.specificValue" }}
 
-                .span3
-                    h4 {{t "editor.th.compareValue" }}
-
-                .span3
-                    h4 {{t "editor.th.displayedValue" }}
+                .span5
+                    h4 {{t "editor.th.displayedValue" }} / {{t "editor.th.compareValue" }}
 
     .row
         .span12

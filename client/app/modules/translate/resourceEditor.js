@@ -184,6 +184,8 @@ function(Backbone, ns, resSync, i18n) {
             'click .confirmRemove': 'ui_confirmRemove',
             'click .test': 'ui_toggleTest',
             'click .refresh': 'ui_refreshTest',
+            'click .compare': 'ui_compare',
+            'click .preview': 'ui_preview',
             'click .multiline': 'ui_toggleArray',
             'click .singleline': 'ui_toggleArray',
             'click .compareEdit': 'ui_compare_edit',
@@ -336,6 +338,24 @@ function(Backbone, ns, resSync, i18n) {
             } else {
                 test(i18n.t, opts);
             }
+        },
+
+        ui_compare: function(e) {
+            e.preventDefault();
+
+            this.$('.compare-commands').show();
+            this.$('.compareControl').show();
+            this.$('.preview-commands').hide();
+            this.$('.previewControl').hide();
+        },
+
+        ui_preview: function(e) {
+            e.preventDefault();
+
+            this.$('.compare-commands').hide();
+            this.$('.compareControl').hide();
+            this.$('.preview-commands').show();
+            this.$('.previewControl').show();
         },
 
         prepareI18n: function(cb) {
