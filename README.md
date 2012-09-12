@@ -13,5 +13,5 @@ To build the solution:
 
 During development:
 
-1. `grunt server`
+1. `node server.js`
 2. `grunt watch` or `grunt debug
