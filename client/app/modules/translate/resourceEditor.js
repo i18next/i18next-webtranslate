@@ -45,13 +45,18 @@ function(Backbone, ns, resSync, i18n) {
 
         events: {
             'click #add': 'ui_add',
-            'keyup .filter': 'ui_filter'
+            'keyup .filter': 'ui_filter',
+            'keyup .filter-value': 'ui_filter_value',
         },
 
         ui_filter: _.debounce(function(e) {
             //e.preventDefault();
 
             app.vent.trigger('filter', this.$('.filter').val());
+        }, 250),
+
+        ui_filter_value: _.debounce(function(e) {
+            app.vent.trigger('filter', this.$('.filter-value').val(), true);
         }, 250),
 
         ui_load: function(e) {
@@ -194,14 +199,22 @@ function(Backbone, ns, resSync, i18n) {
             'click .compareSave': 'ui_compare_save'
         },
 
-        filter: function(token) {
+        filter: function(token, value) {
+            var reg = new RegExp(token), target;
+
+            if (value) {
+               target = this.model.get('value');
+            } else {
+                target = this.model.get('id');
+            }
+
             if (token === '' && this.isHidden) {
                 this.$el.show();
                 this.isHidden = false;
-            } else if (this.model.id.indexOf(token) !== 0 && !this.isHidden) {
+            } else if (reg.test(target) === false && !this.isHidden) {
                 this.$el.hide();
                 this.isHidden = true;
-            } else if (this.model.id.indexOf(token) === 0 && this.isHidden) {
+            } else if (reg.test(target) === true && this.isHidden) {
                 this.$el.show();
                 this.isHidden = false;
             }

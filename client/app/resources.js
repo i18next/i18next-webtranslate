@@ -24,6 +24,7 @@ function($, _) {
                     save: 'save',
                     test: 'test',
                     filterKeys: 'filter keys',
+                    filterValue: 'filter value',
                     compare: 'compare to',
                     download: 'download',
                     th: {
