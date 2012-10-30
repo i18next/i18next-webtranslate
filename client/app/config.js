@@ -9,7 +9,7 @@ require.config({
 
         // Libraries
         augment: '../assets/js/libs/augment',
-        i18next: '../assets/js/libs/i18next-1.5.5',
+        i18next: '../assets/js/libs/i18next.amd.withJQuery-1.5.8',
 
         jquery: '../assets/js/libs/jquery-1.7.2',
         jquery_smoothscroll: '../assets/js/libs/jquery.smooth-scroll-1.4.4',
@@ -27,11 +27,6 @@ require.config({
 
     shim: {
         augment: [],
-
-        i18next: {
-            deps: ['jquery'],
-            exports: 'i18next'
-        },
 
         chosen: ['jquery'],
 

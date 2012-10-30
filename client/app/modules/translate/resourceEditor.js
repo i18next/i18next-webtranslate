@@ -46,7 +46,7 @@ function(Backbone, ns, resSync, i18n) {
         events: {
             'click #add': 'ui_add',
             'keyup .filter': 'ui_filter',
-            'keyup .filter-value': 'ui_filter_value',
+            'keyup .filter-value': 'ui_filter_value'
         },
 
         ui_filter: _.debounce(function(e) {

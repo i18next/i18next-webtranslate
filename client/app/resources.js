@@ -59,13 +59,14 @@ function($, _) {
                     save: 'speichern',
                     test: 'testen',
                     filterKeys: 'Schlüssel filtern',
+                    filterValue: 'Inhalt filtern',
                     compare: 'Vergleichen mit',
                     download: 'herunterladen',
                     th: {
                         key: 'Schlüssel',
                         specificValue: 'spezifischer Wert',
                         displayedValue: 'angezeigter Wert',
-                        compareValue: 'compare value'
+                        compareValue: 'Vergleich'
                     },
                     resourceItem: {
                         compare: 'vergleichen',
@@ -93,13 +94,14 @@ function($, _) {
                     save: 'memorizzare',
                     test: 'provare',
                     filterKeys: 'filtrare chiave',
+                    filterValue: 'filtrare valore',
                     compare: 'cparagonare a',
                     download: 'scaricare',
                     th: {
                         key: 'chiave',
                         specificValue: 'valore specificato',
                         displayedValue: 'valore indicato',
-                        compareValue: 'compare value'
+                        compareValue: 'cparagonare valore'
                     },
                     resourceItem: {
                         compare: 'paragonare',
@@ -127,13 +129,14 @@ function($, _) {
                     save: 'mémoriser',
                     test: 'tester',
                     filterKeys: 'filtrer clé',
+                    filterValue: 'filtrer valeur',
                     compare: 'comparer avec',
                     download: 'télécharger',
                     th: {
                         key: 'clé',
                         specificValue: 'valeur spécifique',
                         displayedValue: 'valeur indiqué',
-                        compareValue: 'compare value'
+                        compareValue: 'comparer'
                     },
                     resourceItem: {
                         compare: 'comparer',

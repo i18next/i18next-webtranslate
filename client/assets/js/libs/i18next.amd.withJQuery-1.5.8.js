@@ -1,8 +1,20 @@
-// i18next, v1.5.5
+// i18next, v1.5.8
 // Copyright (c)2012 Jan Mühlemann (jamuhl).
 // Distributed under MIT license
 // http://i18next.com
-(function() {
+(function (root, factory) {
+    if (typeof exports === 'object') {
+
+      var jquery = require('jquery');
+
+      module.exports = factory(jquery);
+
+    } else if (typeof define === 'function' && define.amd) {
+
+      define(['jquery'], factory);
+
+    } 
+}(this, function ($) {
 
     // add indexOf to non ECMA-262 standard compliant browsers
     if (!Array.prototype.indexOf) {  
@@ -38,29 +50,12 @@
         }
     } 
 
-    var root = this
-      , $ = root.jQuery
-      , i18n = {}
-      , resStore = {}
-      , currentLng
-      , replacementCounter = 0
-      , languages = [];
+    var i18n = {}
+        , resStore = {}
+        , currentLng
+        , replacementCounter = 0
+        , languages = [];
 
-
-    // Export the i18next object for **CommonJS**. 
-    // If we're not in CommonJS, add `i18n` to the
-    // global object or to jquery.
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = i18n;
-    } else if (typeof define === 'function' && define.amd) {
-        define(i18n);
-    } else {
-        if ($) {
-            $.i18n = $.i18n || i18n;
-        } else {
-            root.i18n = root.i18n || i18n;
-        }
-    }
     // defaults
     var o = {
         lng: undefined,
@@ -69,6 +64,7 @@
         lowerCaseLng: false,
         returnObjectTrees: false,
         fallbackLng: 'dev',
+        detectLngQS: 'setLng',
         ns: 'translation',
         nsseparator: ':',
         keyseparator: '.',
@@ -100,6 +96,7 @@
         setJqueryExt: true,
         useDataAttrOptions: false,
         cookieExpirationTime: undefined,
+        useCookie: true,
     
         postProcess: undefined
     };
@@ -424,7 +421,7 @@
         };
     
     
-        var methode = options.sendType ? options.sendType.toLowerCase() : 'get';
+        var methode = options.type ? options.type.toLowerCase() : 'get';
     
         http[methode](options.url, {async: options.async}, function (status, data) {
             if (status === 200) {
@@ -435,46 +432,56 @@
         });
     }
     
+    var _cookie = {
+        create: function(name,value,minutes) {
+            var expires;
+            if (minutes) {
+                var date = new Date();
+                date.setTime(date.getTime()+(minutes*60*1000));
+                expires = "; expires="+date.toGMTString();
+            }
+            else expires = "";
+            document.cookie = name+"="+value+expires+"; path=/";
+        },
+    
+        read: function(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        },
+    
+        remove: function(name) {
+            this.create(name,"",-1);
+        }
+    };
+    
+    var cookie_noop = {
+        create: function(name,value,minutes) {},
+        read: function(name) { return null; },
+        remove: function(name) {}
+    };
+    
+    
+    
     // move dependent functions to a container so that
     // they can be overriden easier in no jquery environment (node.js)
     var f = {
         extend: $ ? $.extend : _extend,
         each: $ ? $.each : _each,
         ajax: $ ? $.ajax : _ajax,
+        cookie: typeof document !== 'undefined' ? _cookie : cookie_noop,
         detectLanguage: detectLanguage,
         log: function(str) {
             if (o.debug) console.log(str);
         },
-        cookie: {
-            create: function(name,value,minutes) {
-                var expires;
-                if (minutes) {
-                    var date = new Date();
-                    date.setTime(date.getTime()+(minutes*60*1000));
-                    expires = "; expires="+date.toGMTString();
-                }
-                else expires = "";
-                document.cookie = name+"="+value+expires+"; path=/";
-            },
-            
-            read: function(name) {
-                var nameEQ = name + "=";
-                var ca = document.cookie.split(';');
-                for(var i=0;i < ca.length;i++) {
-                    var c = ca[i];
-                    while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
-                }
-                return null;
-            },
-            
-            remove: function(name) {
-                    this.create(name,"",-1);
-            }
-        },
         toLanguages: function(lng) {
             var languages = [];
-            if (lng.indexOf('-') === 2 && lng.length === 5) {
+            if (lng.indexOf('-') > -1) {
                 var parts = lng.split('-');
     
                 lng = o.lowerCaseLng ? 
@@ -482,7 +489,7 @@
                     parts[0].toLowerCase() +  '-' + parts[1].toUpperCase();
     
                 if (o.load !== 'unspecific') languages.push(lng);
-                if (o.load !== 'current') languages.push(lng.substr(0, 2));
+                if (o.load !== 'current') languages.push(parts[0]);
             } else {
                 languages.push(lng);
             }
@@ -511,10 +518,10 @@
         if (!o.lng) o.lng = f.detectLanguage(); 
         if (o.lng) {
             // set cookie with lng set (as detectLanguage will set cookie on need)
-            f.cookie.create('i18next', o.lng, o.cookieExpirationTime);
+            if (o.useCookie) f.cookie.create('i18next', o.lng, o.cookieExpirationTime);
         } else {
             o.lng =  o.fallbackLng;
-            f.cookie.remove('i18next');
+            if (o.useCookie) f.cookie.remove('i18next');
         }
     
         languages = f.toLanguages(o.lng);
@@ -654,7 +661,7 @@
     
         f.each(replacementHash, function(key, value) {
             if (typeof value === 'object') {
-                str = applyReplacement(str, value, key);
+                str = applyReplacement(str, value, nestedKey ? nestedKey + '.' + key : key);
             } else {
                 str = str.replace(new RegExp([o.interpolationPrefix, nestedKey ? nestedKey + '.' + key : key, o.interpolationSuffix].join(''), 'g'), value);
             }
@@ -695,7 +702,7 @@
     function _translate(key, options){
         options = options || {};
     
-        var optionsSansCount, translated
+        var optionWithoutCount, translated
           , notfound = options.defaultValue || key
           , lngs = languages;
     
@@ -715,7 +722,7 @@
     
         if (!resStore) { return notfound; } // no resStore to translate from
     
-        var ns = o.ns.defaultNs;
+        var ns = options.ns || o.ns.defaultNs;
         if (key.indexOf(o.nsseparator) > -1) {
             var parts = key.split(o.nsseparator);
             ns = parts[0];
@@ -723,22 +730,22 @@
         }
     
         if (hasContext(options)) {
-            optionsSansCount = f.extend({}, options);
-            delete optionsSansCount.context;
-            optionsSansCount.defaultValue = o.contextNotFound;
+            optionWithoutCount = f.extend({}, options);
+            delete optionWithoutCount.context;
+            optionWithoutCount.defaultValue = o.contextNotFound;
     
             var contextKey = ns + ':' + key + '_' + options.context;
             
-            translated = translate(contextKey, optionsSansCount);
+            translated = translate(contextKey, optionWithoutCount);
             if (translated != o.contextNotFound) {
                 return applyReplacement(translated, { context: options.context }); // apply replacement for context only
             } // else continue translation with original/nonContext key
         }
     
         if (needsPlural(options)) {
-            optionsSansCount = f.extend({}, options);
-            delete optionsSansCount.count;
-            optionsSansCount.defaultValue = o.pluralNotFound;
+            optionWithoutCount = f.extend({}, options);
+            delete optionWithoutCount.count;
+            optionWithoutCount.defaultValue = o.pluralNotFound;
     
             var pluralKey = ns + ':' + key + o.pluralSuffix;
             var pluralExtension = pluralExtensions.get(currentLng, options.count);
@@ -748,7 +755,7 @@
                 pluralKey = ns + ':' + key; // singular
             }
             
-            translated = translate(pluralKey, optionsSansCount);
+            translated = translate(pluralKey, optionWithoutCount);
             if (translated != o.pluralNotFound) {
                 return applyReplacement(translated, { count: options.count }); // apply replacement for count only
             } // else continue translation with original/singular key
@@ -767,7 +774,7 @@
                 value = value && value[keys[x]];
                 x++;
             }
-            if (value) {
+            if (value !== undefined) {
                 if (typeof value === 'string') {
                     value = applyReplacement(value, options);
                     value = applyReuse(value, options);
@@ -783,7 +790,7 @@
                     } else {
                         for (var m in value) {
                             // apply translation on childs
-                            value[m] = _translate(key + '.' + m, options);
+                            value[m] = _translate(ns + ':' + key + '.' + m, options);
                         }
                     }
                 }
@@ -791,7 +798,7 @@
             }
         }
     
-        if (!found && o.sendMissing) {
+        if (found === undefined && o.sendMissing) {
             if (options.lng) {
                 sync.postMissing(options.lng, ns, key, notfound, lngs);
             } else {
@@ -800,25 +807,26 @@
         }
     
         var postProcessor = options.postProcess || o.postProcess;
-        if (found && postProcessor) {
+        if (found !== undefined && postProcessor) {
             if (postProcessors[postProcessor]) {
                 found = postProcessors[postProcessor](found, key, options);
             }
         }
     
-        if (!found) {
+        if (found === undefined) {
             notfound = applyReplacement(notfound, options);
             notfound = applyReuse(notfound, options);
         }
     
-        return (found) ? found : notfound;
+        return (found !== undefined) ? found : notfound;
     }
+    
     function detectLanguage() {
         var detectedLng;
     
         // get from qs
         var qsParm = [];
-        if (window) {
+        if (typeof window !== 'undefined') {
             (function() {
                 var query = window.location.search.substring(1);
                 var parms = query.split('&');
@@ -831,19 +839,19 @@
                     }
                 }
             })();
-            if (qsParm.setLng) {
-                detectedLng = qsParm.setLng;
+            if (qsParm[o.detectLngQS]) {
+                detectedLng = qsParm[o.detectLngQS];
             }
         }
     
         // get from cookie
-        if (!detectedLng && document) {
+        if (!detectedLng && typeof document !== 'undefined' && o.useCookie ) {
             var c = f.cookie.read('i18next');
             if (c) detectedLng = c;
         }
     
         // get from navigator
-        if (!detectedLng && navigator) {
+        if (!detectedLng && typeof navigator !== 'undefined') {
             detectedLng =  (navigator.language) ? navigator.language : navigator.userLanguage;
         }
         
@@ -2091,10 +2099,21 @@
                     var i = ext.plurals(c);
                     var number = ext.numbers[i];
                     if (ext.numbers.length === 2) {
-                        if (number === 2) { 
-                            number = 1;
-                        } else if (number === 1) {
-                            number = -1;
+                        // germanic like en
+                        if (ext.numbers[0] === 2) {
+                            if (number === 2) { 
+                                number = 1; // singular
+                            } else if (number === 1) {
+                                number = -1; // regular plural
+                            }
+                        } 
+                        // romanic like fr
+                        else if (ext.numbers[0] === 1) {
+                            if (number === 2) { 
+                                number = -1; // regular plural
+                            } else if (number === 1) {
+                                number = 1; // singular
+                            }
                         }
                     } //console.log(count + '-' + number);
                     return number;
@@ -2261,4 +2280,9 @@
     i18n.addPostProcessor = addPostProcessor;
     i18n.options = o;
 
-})();
+    $.i18n = i18n;
+    $.t = i18n.t;
+        
+    return i18n;
+
+}));
