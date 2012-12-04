@@ -145,7 +145,7 @@ module.exports = function(grunt) {
           level: 1
         },
         files: {
-          "client/dist/release/i18nextWT-0.0.3.zip": "client/dist/release/assets/**/*"
+          "client/dist/release/i18nextWT-0.0.4.zip": "client/dist/release/assets/**/*"
         }
       }
     },

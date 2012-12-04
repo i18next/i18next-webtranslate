@@ -67,7 +67,6 @@ function(Backbone, ns, resSync, i18n) {
 
             compareLng = this.$('#compare-lng').val();
 
-            console.log(compareLng);
             var compareItem = resSync.flat[compareLng][ns],
                 currentItem = resSync.flat[lng][ns];
 
@@ -475,8 +474,6 @@ function(Backbone, ns, resSync, i18n) {
             array = raw.split('\n');
           }
 
-          console.log(this.model);
-          console.log(this.model.get('compare'));
           if (compareLng) {
             resSync.update(
               compareLng,

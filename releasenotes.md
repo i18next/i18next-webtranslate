@@ -1,3 +1,7 @@
+###v0.0.4
+- removed console.log
+- updated client
+
 ###v0.0.3
 - merged filter value functionality from [ferrari's fork](https://github.com/Ferrari/i18next-webtranslate)
 - updated client
