@@ -1,5 +1,7 @@
 var express = require('express')
   , app = express()
+  , fs = require('fs')
+  , url = require('url')
   , i18n = require('i18next');
 
 
@@ -36,6 +38,23 @@ app.get("/", function(req, res) {
 
 app.get("/favicon.ico", function(req, res) {
     return res.sendfile('client/assets/favicon.ico');
+});
+
+// API to get locale file content (JSONP)
+app.get("/api/:locale/:namespace", function(req, res) {
+  var locale = req.params.locale
+    , namespace = req.params.namespace;
+
+  if (locale && namespace) {
+    var file = fs.readFileSync('locales/' + locale + '/' + namespace + '.json', 'utf-8');
+    var params = url.parse(req.url, true);
+    if (params.query && params.query.callback) {
+      var str = params.query.callback + '(' + file + ')';
+      res.end(str);
+    } else {
+      res.end(file);
+    }
+  }
 });
 
 i18n.registerAppHelper(app)
