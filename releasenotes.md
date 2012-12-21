@@ -1,3 +1,6 @@
+###v0.1.0
+- updated client
+
 ###v0.0.4
 - removed console.log
 - updated client

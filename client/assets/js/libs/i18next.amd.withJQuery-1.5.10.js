@@ -1,4 +1,4 @@
-// i18next, v1.5.9
+// i18next, v1.5.10
 // Copyright (c)2012 Jan Mühlemann (jamuhl).
 // Distributed under MIT license
 // http://i18next.com
@@ -501,6 +501,9 @@
             if (languages.indexOf(o.fallbackLng) === -1 && o.fallbackLng) languages.push(o.fallbackLng);
     
             return languages;
+        },
+        regexEscape: function(str) {
+            return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
         }
     };
     function init(options, cb) {
@@ -518,6 +521,10 @@
         if (typeof o.ns == 'string') {
             o.ns = { namespaces: [o.ns], defaultNs: o.ns};
         }
+    
+        // escape prefix/suffix
+        o.interpolationPrefixEscaped = f.regexEscape(o.interpolationPrefix);
+        o.interpolationSuffixEscaped = f.regexEscape(o.interpolationSuffix);
     
         if (!o.lng) o.lng = f.detectLanguage(); 
         if (o.lng) {
@@ -735,7 +742,7 @@
             if (typeof value === 'object' && value !== null) {
                 str = applyReplacement(str, value, nestedKey ? nestedKey + '.' + key : key);
             } else {
-                str = str.replace(new RegExp([o.interpolationPrefix, nestedKey ? nestedKey + '.' + key : key, o.interpolationSuffix].join(''), 'g'), value);
+                str = str.replace(new RegExp([o.interpolationPrefixEscaped, nestedKey ? nestedKey + '.' + key : key, o.interpolationSuffixEscaped].join(''), 'g'), value);
             }
         });
         return str;
@@ -1003,7 +1010,9 @@
                 // load each file individual
                 f.each(ns.namespaces, function(nsIndex, nsValue) {
                     f.each(lngs, function(lngIndex, lngValue) {
-                        sync._fetchOne(lngValue, nsValue, options, function(err, data) {
+                        
+                        // Call this once our translation has returned.
+                        var loadComplete = function(err, data) {
                             if (err) {
                                 errors = errors || [];
                                 errors.push(err);
@@ -1013,7 +1022,15 @@
     
                             todo--; // wait for all done befor callback
                             if (todo === 0) cb(errors, store);
-                        });
+                        };
+                        
+                        if(typeof options.customLoad == 'function'){
+                            // Use the specified custom callback.
+                            options.customLoad(lngValue, nsValue, options, loadComplete);
+                        } else {
+                            //~ // Use our inbuilt sync.
+                            sync._fetchOne(lngValue, nsValue, options, loadComplete);
+                        }
                     });
                 });
             } else {
@@ -1087,6 +1104,7 @@
             }
         }
     };
+    
     // definition http://translate.sourceforge.net/wiki/l10n/pluralforms
     var pluralExtensions = {
     
@@ -1102,8 +1120,8 @@
             "af": {
                 "name": "Afrikaans", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1126,8 +1144,8 @@
             "an": {
                 "name": "Aragonese", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1154,8 +1172,8 @@
             "ast": {
                 "name": "Asturian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1169,33 +1187,33 @@
             "az": {
                 "name": "Azerbaijani", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "be": {
                 "name": "Belarusian", 
                 "numbers": [
-                    5, 
                     1, 
-                    2
+                    2, 
+                    5
                 ], 
                 "plurals": function(n) { return Number(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2); }
             }, 
             "bg": {
                 "name": "Bulgarian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "bn": {
                 "name": "Bengali", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1217,17 +1235,17 @@
             "bs": {
                 "name": "Bosnian", 
                 "numbers": [
-                    5, 
                     1, 
-                    2
+                    2, 
+                    5
                 ], 
                 "plurals": function(n) { return Number(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2); }
             }, 
             "ca": {
                 "name": "Catalan", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1241,27 +1259,27 @@
             "cs": {
                 "name": "Czech", 
                 "numbers": [
-                    5, 
                     1, 
-                    2
+                    2, 
+                    5
                 ], 
                 "plurals": function(n) { return Number((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2); }
             }, 
             "csb": {
                 "name": "Kashubian", 
                 "numbers": [
-                    5, 
                     1, 
-                    2
+                    2, 
+                    5
                 ], 
                 "plurals": function(n) { return Number(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2); }
             }, 
             "cy": {
                 "name": "Welsh", 
                 "numbers": [
-                    3, 
                     1, 
                     2, 
+                    3, 
                     8
                 ], 
                 "plurals": function(n) { return Number((n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3); }
@@ -1269,16 +1287,16 @@
             "da": {
                 "name": "Danish", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "de": {
                 "name": "German", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1292,56 +1310,56 @@
             "el": {
                 "name": "Greek", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "en": {
                 "name": "English", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "eo": {
                 "name": "Esperanto", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "es": {
                 "name": "Spanish", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "es_ar": {
                 "name": "Argentinean Spanish", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "et": {
                 "name": "Estonian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "eu": {
                 "name": "Basque", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1355,8 +1373,8 @@
             "fi": {
                 "name": "Finnish", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1371,8 +1389,8 @@
             "fo": {
                 "name": "Faroese", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1387,25 +1405,25 @@
             "fur": {
                 "name": "Friulian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "fy": {
                 "name": "Frisian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "ga": {
                 "name": "Irish", 
                 "numbers": [
-                    3, 
                     1, 
-                    2, 
+                    2,
+                    3,
                     7, 
                     11
                 ], 
@@ -1414,26 +1432,26 @@
             "gd": {
                 "name": "Scottish Gaelic", 
                 "numbers": [
-                    20, 
                     1, 
                     2, 
-                    3
+                    3,
+                    20
                 ], 
                 "plurals": function(n) { return Number((n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3); }
             }, 
             "gl": {
                 "name": "Galician", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "gu": {
                 "name": "Gujarati", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1448,57 +1466,57 @@
             "ha": {
                 "name": "Hausa", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "he": {
                 "name": "Hebrew", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "hi": {
                 "name": "Hindi", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "hr": {
                 "name": "Croatian", 
                 "numbers": [
-                    5, 
                     1, 
-                    2
+                    2,
+                    5
                 ], 
                 "plurals": function(n) { return Number(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2); }
             }, 
             "hu": {
                 "name": "Hungarian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "hy": {
                 "name": "Armenian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "ia": {
                 "name": "Interlingua", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1512,16 +1530,16 @@
             "is": {
                 "name": "Icelandic", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n%10!=1 || n%100==11); }
             }, 
             "it": {
                 "name": "Italian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1571,8 +1589,8 @@
             "kn": {
                 "name": "Kannada", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1586,18 +1604,18 @@
             "ku": {
                 "name": "Kurdish", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "kw": {
                 "name": "Cornish", 
                 "numbers": [
-                    4, 
                     1, 
                     2, 
-                    3
+                    3,
+                    4
                 ], 
                 "plurals": function(n) { return Number((n==1) ? 0 : (n==2) ? 1 : (n == 3) ? 2 : 3); }
             }, 
@@ -1611,8 +1629,8 @@
             "lb": {
                 "name": "Letzeburgesch", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1634,9 +1652,9 @@
             "lt": {
                 "name": "Lithuanian", 
                 "numbers": [
-                    10, 
                     1, 
-                    2
+                    2,
+                    10
                 ], 
                 "plurals": function(n) { return Number(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2); }
             }, 
@@ -1652,8 +1670,8 @@
             "mai": {
                 "name": "Maithili", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1684,24 +1702,24 @@
             "mk": {
                 "name": "Macedonian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n==1 || n%10==1 ? 0 : 1); }
             }, 
             "ml": {
                 "name": "Malayalam", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "mn": {
                 "name": "Mongolian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1717,8 +1735,8 @@
             "mr": {
                 "name": "Marathi", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1732,8 +1750,8 @@
             "mt": {
                 "name": "Maltese", 
                 "numbers": [
-                    2, 
                     1, 
+                    2, 
                     11, 
                     20
                 ], 
@@ -1742,64 +1760,64 @@
             "nah": {
                 "name": "Nahuatl", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "nap": {
                 "name": "Neapolitan", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "nb": {
                 "name": "Norwegian Bokmal", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "ne": {
                 "name": "Nepali", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "nl": {
                 "name": "Dutch", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "nn": {
                 "name": "Norwegian Nynorsk", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "no": {
                 "name": "Norwegian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "nso": {
                 "name": "Northern Sotho", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -1822,73 +1840,73 @@
             "pa": {
                 "name": "Punjabi", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "pap": {
                 "name": "Papiamento", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "pl": {
                 "name": "Polish", 
                 "numbers": [
-                    5, 
                     1, 
-                    2
+                    2,
+                    5
                 ], 
                 "plurals": function(n) { return Number(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2); }
             }, 
             "pms": {
                 "name": "Piemontese", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "ps": {
                 "name": "Pashto", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "pt": {
                 "name": "Portuguese", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "pt_br": {
                 "name": "Brazilian Portuguese", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "rm": {
                 "name": "Romansh", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "ro": {
                 "name": "Romanian", 
                 "numbers": [
-                    2, 
                     1, 
+                    2,
                     20
                 ], 
                 "plurals": function(n) { return Number(n==1 ? 0 : (n===0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2); }
@@ -1896,9 +1914,9 @@
             "ru": {
                 "name": "Russian", 
                 "numbers": [
-                    5, 
                     1, 
-                    2
+                    2, 
+                    5
                 ], 
                 "plurals": function(n) { return Number(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2); }
             }, 
@@ -1912,33 +1930,33 @@
             "sco": {
                 "name": "Scots", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "se": {
                 "name": "Northern Sami", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "si": {
                 "name": "Sinhala", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "sk": {
                 "name": "Slovak", 
                 "numbers": [
-                    5, 
                     1, 
-                    2
+                    2, 
+                    5
                 ], 
                 "plurals": function(n) { return Number((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2); }
             }, 
@@ -1955,33 +1973,33 @@
             "so": {
                 "name": "Somali", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "son": {
                 "name": "Songhay", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "sq": {
                 "name": "Albanian", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "sr": {
                 "name": "Serbian", 
                 "numbers": [
-                    5, 
                     1, 
-                    2
+                    2,
+                    5
                 ], 
                 "plurals": function(n) { return Number(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2); }
             }, 
@@ -1995,32 +2013,32 @@
             "sv": {
                 "name": "Swedish", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "sw": {
                 "name": "Swahili", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "ta": {
                 "name": "Tamil", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
             "te": {
                 "name": "Telugu", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -2050,8 +2068,8 @@
             "tk": {
                 "name": "Turkmen", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -2080,17 +2098,17 @@
             "uk": {
                 "name": "Ukrainian", 
                 "numbers": [
-                    5, 
                     1, 
-                    2
+                    2,
+                    5
                 ], 
                 "plurals": function(n) { return Number(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2); }
             }, 
             "ur": {
                 "name": "Urdu", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -2127,8 +2145,8 @@
             "yo": {
                 "name": "Yoruba", 
                 "numbers": [
-                    2, 
-                    1
+                    1, 
+                    2
                 ], 
                 "plurals": function(n) { return Number(n != 1); }
             }, 
@@ -2170,24 +2188,13 @@
                 if (ext) {
                     var i = ext.plurals(c);
                     var number = ext.numbers[i];
-                    if (ext.numbers.length === 2) {
-                        // germanic like en
-                        if (ext.numbers[0] === 2) {
-                            if (number === 2) { 
-                                number = 1; // singular
-                            } else if (number === 1) {
-                                number = -1; // regular plural
-                            }
-                        } 
-                        // romanic like fr
-                        else if (ext.numbers[0] === 1) {
-                            if (number === 2) { 
-                                number = -1; // regular plural
-                            } else if (number === 1) {
-                                number = 1; // singular
-                            }
+                    if (ext.numbers.length === 2 && ext.numbers[0] === 1) {
+                        if (number === 2) { 
+                            number = -1; // regular plural
+                        } else if (number === 1) {
+                            number = 1; // singular
                         }
-                    } //console.log(count + '-' + number);
+                    }//console.log(count + '-' + number);
                     return number;
                 } else {
                     return c === 1 ? '1' : '-1';
