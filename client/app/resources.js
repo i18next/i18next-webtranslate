@@ -120,28 +120,28 @@ function($, _) {
                     }
                 },
                 editor: {
-                    choose: 'seléctioner',
-                    addKey: 'ajouter clé',
-                    add: 'ajouter',
-                    'delete': 'supprimer',
-                    edit: 'modifier',
-                    cancel: 'annuller',
-                    save: 'mémoriser',
-                    test: 'tester',
-                    filterKeys: 'filtrer clé',
-                    filterValue: 'filtrer valeur',
-                    compare: 'comparer avec',
-                    download: 'télécharger',
+                    choose: 'Langue cible',
+                    addKey: 'Ajouter une clé',
+                    add: 'Ajouter',
+                    'delete': 'Supprimer',
+                    edit: 'Modifier',
+                    cancel: 'Annuler',
+                    save: 'Mémoriser',
+                    test: 'Tester',
+                    filterKeys: 'Filtrer par clé',
+                    filterValue: 'Filtrer par valeur',
+                    compare: 'Langue source',
+                    download: 'Télécharger',
                     th: {
-                        key: 'clé',
-                        specificValue: 'valeur spécifique',
-                        displayedValue: 'valeur indiqué',
-                        compareValue: 'comparer'
+                        key: 'Clé',
+                        specificValue: 'Valeur dans la langue cible',
+                        displayedValue: 'Valeur dans la langue source',
+                        compareValue: 'Comparer'
                     },
                     resourceItem: {
-                        compare: 'comparer',
+                        compare: 'Comparer',
                         options: 'Option',
-                        optionsDesc: 'une option par ligne'
+                        optionsDesc: 'Une option par ligne'
                     }
                 }
             }
