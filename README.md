@@ -1,3 +1,7 @@
+# deprecated
+
+Deprecated. Not planned to update to v2.
+
 # Introduction
 
 This is the web translation UI to i18next.
