@@ -1,6 +1,6 @@
 # deprecated
 
-Deprecated. Not planned to update to v2.
+Deprecated. You can use [locize.com - localization as a service](http://locize.com) as a better alternative.
 
 # Introduction
 
